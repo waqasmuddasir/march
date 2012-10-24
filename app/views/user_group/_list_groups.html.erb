@@ -1,0 +1,287 @@
+
+<% @groups.each do |group|   %>
+
+<div class="group">
+    <div class="content">
+
+
+      <div class="heading">
+        <%if group.id.to_i==@edit_group_id.to_i%>
+          <% form_tag({:controller=>"user_group",:action=>:update_name}) do %>
+            <%= text_field_tag(:group_name, group.name) %>
+            <%= hidden_field_tag(:id, group.id) %>
+            <%= submit_tag :update %>
+            <%=link_to "Cancel", :action=>:index %>
+          <%end%>
+        <%else%>
+          <%=group.name%>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+
+          <%=link_to "Change name", :action=>:edit_name, :id=>group.id %>
+
+        <%end%>
+
+
+  <%#= Administration::MerchantPackage.find(group.group_members.first.package_id).title %>
+
+
+
+      </div>
+      <div class="number">
+        <%#= GroupNumber.find(group.group_number_id).phone_number %>
+        <%= group_contact_number(group.id, current_user.mobile) %>
+
+      </div>
+      <!-- CREATOR -->
+      <%  group_creator=User.find(group.user_id)%>
+      <div class="members">
+        <div class="name"><%=  group_creator.name %> &nbsp; (you)</div>
+        <div class="phone">&nbsp;<%#=group_creator.mobile%></div>
+
+        <div class="user_type">
+          CREATOR
+        </div>
+        <div class="clear"></div>
+      </div>
+
+      <!-- LIST MEMBERS -->
+      <%  group.group_members.each do |member|%>
+        <div class="members">
+          <div class="name"><%=  member.name %></div>
+          <div class="phone">
+            <%# if member.host_user_id==current_user.id %>
+              <%#=member.mobile%>
+            <%#else%>
+              <%#*&nbsp;&nbsp;%>
+            <%#end%>
+          &nbsp;&nbsp;
+          </div>
+          <div class="user_type">
+
+            <%if member.is_blocked %>
+
+              BLOCKED
+
+            <%else%>
+
+              <%if member.is_active.nil? %>
+                INVITED
+              <%elsif member.is_active==false%>
+                INACTIVE
+              <%elsif member.is_active%>
+                ACTIVE
+              <%end%>
+            <%end%>
+
+          </div>
+          <div class="link">
+            <%if member.is_blocked%>
+              <%=link_to :Unblock,:action => "unblock_member",:member_id => member.id%>
+            <%else%>
+              <%=link_to :Block,:action => "block_member",:member_id => member.id%>
+            <%end%>&nbsp;
+          </div>
+          <%=link_to "",{:action => "delete_member",:member_id => member.id}, :onclick=>"return confirm('Delete this member?');",:class=>"remove" %>
+          <div class="clear"></div>
+        </div>
+      <%end%>
+      <br/>
+
+
+      <%if group.id.to_i==@invite_group_id.to_i%>
+        <%= render "group_invite" %>
+      <%else%>
+
+        <br/>
+        <table><tr>
+
+            <td><%=button_to "Delete Group", {:action=>"remove_owner", :group_id=>group.id}, :onclick=>"return confirm('Confirm on Deleting this group!');",:class => "button" %></td>
+            <td>
+              
+              <% if group.group_members.count<10 %>
+    <%=button_to "Invite Member", {:action=>:invite_member, :id=>group.id},:class => "button"   %>
+            <%end%>
+            </td>
+
+          </tr>
+
+        </table>    
+      <%end%>
+
+
+
+      <br/>
+    </div>
+  </div>
+
+<%end%>
+
+
+<%#*#############################################################################################%>
+
+<%if @joined_groups.count > 0 %>
+
+  <% @joined_groups.each do |group|   %>
+<%is_active_unblock=true%>
+<%is_active_member=true%>
+<%group_member_id=nil%>
+<div class="group">
+      <div class="content">
+        <div class="heading">
+    <%#= Administration::MerchantPackage.find(group.group_members.first.package_id).title %>
+          <%=group["name"]%>
+        </div>
+        <div class="number">
+    <%#= GroupNumber.find(group[:group_number_id]).phone_number %>
+
+        <%= group_contact_number(group["id"], current_user.mobile) %>
+    
+        </div>
+        <!-- CREATOR -->
+        <% # group_creator=User.find(group.user_id)%>
+        <div class="members">
+          <div class="name"><%=group["owner"]%></div>
+          <div class="phone">&nbsp;</div>
+          <div class="user_type">
+            CREATOR
+          </div>
+          <div class="clear"></div>
+          <div class="clear"></div>
+        </div>
+        <%group_members=GroupMember.find_all_by_user_group_id(group["id"])%>
+
+
+
+
+        <!-- LIST MEMBERS -->
+        <%  group_members.each do |member|%>
+          <div class="members">
+            <div class="name"><%=  member.name %>
+            <% if member.mobile==current_user.mobile %>
+            &nbsp;(you)
+    <%  is_active_unblock=false if !member.is_active or member.is_blocked%>
+      <% is_active_member=false if !member.is_active  %>
+      <%group_member_id= member.id%>
+      <%end%>
+            </div>
+            <div class="phone">
+              <%# if member.host_user_id==current_user.id %>
+                <%#=member.mobile%>
+              <%#else%>
+                <%#*&nbsp;&nbsp;%>
+              <%#end%>
+              &nbsp;&nbsp;
+            </div>
+            <div class="user_type">
+
+              <%if member.is_blocked %>
+
+                BLOCKED
+
+              <%else%>
+
+                <%if member.is_active.nil? %>
+                  INVITED
+                <%elsif member.is_active==false%>
+                  INACTIVE
+                <%elsif member.is_active%>
+                  ACTIVE
+                <%end%>
+              <%end%>
+
+            </div>
+            <div class="clear"></div>
+            <div class="clear"></div>
+          </div>
+        <%end%>
+
+
+
+
+        <%if group["id"].to_i==@invite_group_id.to_i%>
+          <%= render "group_invite" %>
+        <%else%>
+
+          <%  member_id=GroupMember.find_all_by_mobile_and_user_group_id(current_user.mobile, group["id"]).first.id %>
+          <br/>
+          <table><tr>
+              <td><%=button_to "Join Group", :action=>:join_group, :member_id=>group_member_id if !is_active_member %></td>
+              <td>
+
+      <%=button_to "Leave Group", {:action=>"leave_group", :member_id=>member_id}, :onclick=>"return confirm('Confirm on Leaving this group!');" %></td>
+              <td>
+
+      <% if group_members.count<10 and is_active_unblock %>
+        <%=button_to "Invite Member", :action=>:invite_member, :id=>group["id"]%>
+      <%end%>
+
+                
+</td>
+            </tr>
+
+          </table>
+    
+    <%end%>
+
+
+
+
+
+      </div>
+    </div>
+
+  <%end%>
+
+
+<%end%>
+
+<% if @groups.count==0 and @joined_groups.count==0 %>
+
+  <br /> <br /> You've not joined any group
+  <%end%>
+
+
+  <%#* LEFT GROUPS #############################################################################################%>
+
+<%if @left_groups.count > 0 %>
+
+    <div class="group">
+      <div class="content">
+        <div class="heading">
+            Groups that are left
+        </div>
+        
+
+
+
+        <!-- LIST GROUPS LEFT-->
+  <% @left_groups.each do |group|   %>
+
+          <div class="members">
+            <div class="name"><%=  group["name"] %></div>
+            <div class="phone">
+                <%=group["number"]%>
+              </div>
+            
+            
+            <div class="link">
+
+            <%=link_to :Rejoin,:action => "rejoin_member",:member_id => group["member_id"]%>
+          </div>
+            <div class="clear"></div>
+          </div>
+        <%end%>
+
+
+
+
+        
+
+
+
+
+      </div>
+    </div>
+
+
+<%end%>

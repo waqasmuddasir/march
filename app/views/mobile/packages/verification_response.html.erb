@@ -1,0 +1,32 @@
+
+ <%if @offering != nil && @package != nil%>
+    <span class="header"><%= @offering["title"]%></span>
+    <%if !@package["redeemed_at"].nil? %>
+      <div class="graymessage">Redeemed: <%=  @package["redeemed_at"] %></div>
+    <%end%>
+      <div class="clear"></div>
+      <div style="float:right;margin-right:20px;">
+        <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like href="http://www.facebook.com/foodsecret" layout="button_count" show_faces="true" width="100"></fb:like>
+      </div>
+      <div class="clear"></div>
+  <%end%>
+<div class="center box">
+  <h3><%= raw @status%></h3>
+  <p><%= raw  @error %></p>
+  <p>
+   <%= raw @merchant_message%>
+  </p>
+  
+</div>
+<%if @offering != nil && @package != nil%>
+<div style="padding-left:20px" >
+
+     <div><%=raw @package["description"]%> </div>
+  </div>
+  <div id="packages" style="padding-left:10px;display:none;">
+    <%= raw  @offering["description"].to_s.html_safe %>
+  </div>
+  <p>
+    <span href="JAVASCRIPT:" onclick="showHideDetails();" style="cursor:pointer;text-decoration:underline"><span id="link_name">Show Details...</span></span>
+  </p>
+<%end%>

@@ -1,0 +1,29 @@
+
+<div id="slide-panel"><!--SLIDE PANEL STARTS-->
+  
+  <div class="loginform">
+    <div class="leftdetails">If you've already joined Ultra, sign in here. If not, <a href="Javascript:" onclick="cancelSignIn();"> sign up</a></div>
+     <div class="close_button">
+      <a href="Javascript:" onclick='$("#slide-panel").slideToggle("slow");'> X SIGN IN </a></div>
+    
+    <div class="formdetails">
+      <%= form_tag sessions_path do -%>
+      <label for="log"><%= label_tag 'E-mail' %>: </label><%= text_field_tag 'login', @login,:class=>"textbox" %>
+
+      <label for="pwd"><%= label_tag 'Password' %>: </label><%= password_field_tag 'password', nil,:class=>"textbox" %>
+
+      <!-- Uncomment this if you want this functionality
+      <p><%= label_tag 'remember_me', 'Remember me' %>
+      <%= check_box_tag 'remember_me', '1', @remember_me %></p>
+      -->     
+      <%= submit_tag 'Sign in',:class=>"button" %>
+    <% end -%>     
+    </div>
+    
+    <div class="clear"></div>
+    <div class="loginregister">
+     <%= link_to "Forgot password",:controller => "users",:action=>"forgot_password" %>
+    </div>
+  </div><!--loginform ends-->
+</div>
+<div class="slide"><a href="Javascript:" class="btn-slide"><span id="symb">&or;</span> SIGN IN</a></div>

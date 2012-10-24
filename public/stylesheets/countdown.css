@@ -1,0 +1,31 @@
+/* 
+    Document   : countdown
+    Created on : Nov 20, 2010, 1:52:29 AM
+    Author     : nasir
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+br { clear: both; }
+.cntSeparator
+{
+    font-size: 54px;
+    margin: 10px 7px;
+    color: #000;
+}
+.desc { margin: 7px 3px; }
+.desc div
+{
+    
+    font-family: Arial;
+    width: 70px;
+    margin-right: 65px;
+    font-size: 13px;
+    font-weight: bold;
+    color: #000;
+}
+

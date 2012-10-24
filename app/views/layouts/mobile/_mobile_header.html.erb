@@ -1,0 +1,13 @@
+<div id="topbar" class="black">
+		<div id="title">
+			Ultra mobile
+                </div>
+  <%if session[:auth_token] != nil%>
+                <div id="leftnav">
+                  <a href="/mobile/packages"><%= image_tag "mobile/home.png" %> </a>
+                </div>
+                <div id="rightnav">
+                  <%=link_to "Logout", :controller => "/mobile/sessions", :action => "logout"%>
+                </div>
+ <%end%>
+</div> <!-- topbar -->

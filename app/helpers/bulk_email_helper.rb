@@ -1,0 +1,3 @@
+module BulkEmailHelper
+
+end

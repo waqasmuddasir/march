@@ -1,0 +1,38 @@
+
+<%=form_for(:user, :url => {:action=>:update,:id=>@user.id}) do |f|%>
+    <div>
+      <h3>Edit User: &nbsp; <%= @user.email %></h3>
+    </div>
+    <% if @user.errors.any? %>
+    <div class="error">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <p><%= f.label :name %>
+      <%= f.text_field :name, :maxlength=>30,:class => :textbox %>
+    </p>
+    
+      
+    
+    <p><%= f.label :mobile %>
+      <%= f.text_field :mobile, :maxlength=>16,:class => :textbox %>
+    </p>
+    <p>
+       <%= f.check_box :sms_notification %>
+        SMS me about future packages.
+    </p>
+    <p>
+      <%= f.submit "Update Details"%>
+    </p>
+  
+<%end%>
+
+<%= link_to('show', :action=>"show", :id=>@user.id) %> &nbsp;|&nbsp;
+<%= link_to('change password', :action=>"change_password", :id=>@user.id) %>
+
+

@@ -1,0 +1,14 @@
+<div class="field">
+
+  <%if @merchants != nil && @merchants.count > 0%>
+    <%=  label_tag "Merchants" %><br />
+    <div style="width:300px;height:200px;overflow:auto">
+      <%@merchants.each do |merchant|%>
+      <input type="checkbox" name="administration_merchant_offering[][merchant_id]" id="administration_merchant_offering_merchant_id" value="<%=merchant.id%>"  <%if @merchant_offerings.include?(Administration::MerchantOffering.find(:first,:conditions =>{:offering_id=>@administration_offering.id,:merchant_id => merchant.id}))%>checked="checked" <%end%>/> <%=merchant.name%><br/>
+
+      <%end%>
+    </div>
+
+    <%end%>
+  </div>
+

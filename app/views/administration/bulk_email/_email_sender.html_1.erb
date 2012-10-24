@@ -1,0 +1,40 @@
+
+
+<h2>Bulk Email</h2>
+<span style="color:red">
+<%=flash[:notice]%>
+  
+  </span>
+
+<%= form_tag({:controller=>"administration/bulk_email",:action => "send_email"}, :method => "post") do %>
+
+<table>
+
+  <tr>
+    <td>Attach package:</td>
+    <td><%= select_tag :package_id,options_for_select(Administration::MerchantPackage.all.collect { |c| [c.title, c.id] }.insert(0, 'none')) %></td>
+  </tr>
+  <tr>
+    <td>To:</td>
+    <td>
+      <%=  text_area_tag(:to, @csv, :size=>"60x6")%></td>
+  </tr>
+  <tr>
+    <td>Suject:</td>
+    <td><%=  text_field_tag(:subject, @subject, :size=>"55")%>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Message Content:
+
+    </td>
+    <td><%=  text_area_tag(:content,@content, :size=>"60x8")%></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="text-align:right"><%= submit_tag("Send") %></td>
+  </tr>
+
+</table>
+<% end %>

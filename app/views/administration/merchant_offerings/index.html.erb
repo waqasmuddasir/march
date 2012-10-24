@@ -1,0 +1,27 @@
+<h1>Manage offerings</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Merchant</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @administration_merchant_offerings.each do |administration_merchant_offering| %>
+  <tr>
+    <td><%= administration_merchant_offering.title %></td>
+    <td><%= administration_merchant_offering.description %></td>
+    <td><%= administration_merchant_offering.merchant_id %></td>
+    <td><%= link_to 'Show', administration_merchant_offering %></td>
+    <td><%= link_to 'Edit', edit_administration_merchant_offering_path(administration_merchant_offering) %></td>
+    <td><%= link_to 'Destroy', administration_merchant_offering, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Merchant offering', new_administration_merchant_offering_path %>

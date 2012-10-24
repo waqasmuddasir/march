@@ -1,0 +1,43 @@
+<div style="width:700px;">
+<h1>Manage Merchants</h1>
+<div style="float:right;margin-right:50px;" >
+  <%= link_to '+ New Merchant', new_administration_merchant_path %> &nbsp;&nbsp; <%= link_to 'Merchant categories',administration_merchant_categories_path %>
+</div>
+<%if @administration_merchants.count > 0%>
+  <div style="clear:both"></div>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Detail</th>
+      <th>Address</th>
+      <th>Country</th>
+      <th>City</th>
+      <th>Phone</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+
+  <% @administration_merchants.each do |administration_merchant| %>
+    <tr>
+      <td><%= administration_merchant.name %></td>
+      <td><%= administration_merchant.detail %></td>
+      <td><%= administration_merchant.address %></td>
+      <td><%= administration_merchant.country %></td>
+      <td><%= administration_merchant.city %></td>
+      <td><%= administration_merchant.phone %></td>
+      <td><%= link_to 'Show', administration_merchant %></td>
+      <td><%= link_to 'Edit', edit_administration_merchant_path(administration_merchant) %></td>
+      <td><%= link_to 'Destroy', administration_merchant, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+  </table>
+  <%else%>
+  <div style="padding-top:50px;padding-left:50px">
+    No marchents found
+  </div>
+<%end%>
+
+</div>
+
+

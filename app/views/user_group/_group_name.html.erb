@@ -1,0 +1,11 @@
+<% form_for :group do |f|%>
+<%if group.id=@edit_group_id%>
+<%= f.text_field :name %>
+<%else%>
+  <%= group.name %>
+<%end%>
+
+<%end%>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <%=link_to "Change name" %>
+      

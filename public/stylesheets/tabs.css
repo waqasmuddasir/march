@@ -1,0 +1,214 @@
+/* 
+    Document   : tabs
+    Created on : Dec 29, 2010, 12:14:25 AM
+    Author     : Nasir Ibrahim
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+ul.tabs {
+	margin: 0;	
+        padding-left:82px;
+	/*float: right;*/
+	list-style: none;
+	height: 32px; /*--Set height of tabs--*/
+	/*border-bottom: 1px solid #999;
+	border-left: 1px solid #999;*/
+	width: 100%;
+        
+}
+ul.tabs li {
+	float:left;
+	margin: 0;
+	padding: 0;
+        
+	/*height: 31px; /*--Subtract 1px from the height of the unordered list--*/
+	/*line-height: 31px; /*--Vertically aligns the text within the tab--*/
+	/*border: 1px solid #999;
+	border-left: none;*/
+	margin-bottom: -1px; /*--Pull the list item down 1px--*/
+	overflow: hidden;
+	position: relative;
+	background: #fff;
+        color:#999;
+}
+ul.tabs li a {
+	text-decoration: none;	
+	display: block;
+	font-size: 16px;
+	padding: 0px;
+	/*border: 1px solid #fff; /*--Gives the bevel look with a 1px white border inside the list item--*/
+	outline: none;
+        color:#999999;
+}
+ul.tabs li a:hover {
+	background: #fff;
+        color:#1A1A1A;
+}
+ul.tabs li.separator{
+    margin-left:22.5px;
+    margin-right:22px;
+    color:#CCCCCC
+
+}
+html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that the active tab does not listen to the hover properties--*/
+	background: #fff;
+        color:#1A1A1A;
+	/*border-bottom: 1px solid #fff; /*--Makes the active tab look like it's connected with its content--*/
+        
+}
+.tab_container {
+	/*border: 1px solid #999;
+	border-top: none;*/
+	overflow: hidden;
+	clear: both;
+	float: left;
+        width: 72%;
+	background: #fff;
+        padding-left:65px;
+        font-size:10px;
+}
+.tab_container p{
+    text-align:justify;
+}
+.tab_container a{
+ color:#1A1A1A
+}
+.tab_container .textbox{
+    padding:2px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #1A1A1A;
+    width:219px;
+    height:18px;
+    font-size:12px;
+    
+}
+.tab_container .textarea{
+    padding:2px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #1A1A1A;
+    width:219px;
+    font-size:12px;
+
+}
+.tab_container .selectbox select{
+    padding:2px;
+    position: relative;
+    overflow: hidden;
+    background:#fff;
+    border: 1px solid #1A1A1A;
+    width:224px;
+    height:25px;
+    font-size:12px;
+
+}
+.tab_container .button input{
+        height: 30px;
+	border: 1px solid #000;
+	font-weight: bold;
+	font-size: 12px;
+	overflow: hidden;
+	background: none;
+        background-color:#000;
+        padding-left:10px;
+        padding-right:10px;
+        color:#fff;
+        margin-left:20px;
+        
+}
+.tab_container .error{
+    font-size:10px;
+    color:red;
+}
+.tab_container .share_left{
+    float:left;
+}
+.tab_container .share_left a{
+    text-decoration:none;
+}
+.tab_container .share_right{
+    float:right;
+    margin-right:0px;
+}
+.tab_container .share_right a{
+    text-decoration:none;
+}
+.tab_content {
+	padding: 20px;
+	font-size: 1.2em;
+}
+ul.tabs li a.active_tab{
+    color:#1A1A1A;
+}
+#share-friend
+{
+    overflow: hidden;
+    clear: both;
+    float: left;
+    width: 72%;
+    background: #fff;
+    padding-left:65px;
+    font-size:12px;
+}
+#share-friend p{
+    text-align:justify;
+}
+#share-friend a{
+ color:#1A1A1A
+}
+#share-friend .textbox{
+    padding:2px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #1A1A1A;
+    width:219px;
+    height:18px;
+    font-size:12px;
+
+}
+#share-friend .textarea{
+    padding:2px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #1A1A1A;
+    width:219px;
+    font-size:12px;
+
+}
+#share-friend .selectbox select{
+    padding:2px;
+    position: relative;
+    overflow: hidden;
+    background:#fff;
+    border: 1px solid #1A1A1A;
+    width:224px;
+    height:25px;
+    font-size:12px;
+
+}
+#share-friend .button input{
+        height: 30px;
+	border: 1px solid #000;
+	font-weight: bold;
+	font-size: 12px;
+	overflow: hidden;
+	background: none;
+        background-color:#000;
+        padding-left:10px;
+        padding-right:10px;
+        color:#fff;
+        margin-left:20px;
+
+}
+#share-friend .error{
+    font-size:10px;
+    color:red;
+}
+

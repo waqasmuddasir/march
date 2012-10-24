@@ -1,0 +1,112 @@
+<%= javascript_include_tag "jquery.js"%>
+<%= javascript_include_tag "ckeditor/ckeditor.js"  %>
+<%= javascript_include_tag "ckeditor/adapters/jquery.js"  %>
+<script language="javascript" type="text/javascript" >
+  jQuery(document).ready( function() {
+    $( 'textarea.editor' ).ckeditor();
+
+  });
+</script>
+<%#*disable for add new %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%>
+<% if @administration_email_template.id %> 
+  <table><tr><td>
+        <%= form_for(@administration_email_template) do |f| %>
+
+          <% if @administration_email_template.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@administration_email_template.errors.count, "error") %> prohibited this administration_email_template from being saved:</h2>
+
+              <ul>
+                <% @administration_email_template.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <div class="field">
+
+            <h3><%= @administration_email_template.name %></h3>
+
+          </div>
+          <% if !@administration_email_template.id %>
+            <div class="field">
+              type<br />
+              <%= f.text_field :name %>
+            </div>
+          <%end%>
+          <div class="field">
+            <%= f.label :subject %><br />
+            <%= f.text_field :subject %>
+          </div>
+          <div class="field">
+            <%= f.label :content %><br />
+            <%#= f.text_area :content %>
+    <%= f.text_area :content, :col => 20, :row => 10,:class => "editor" %>
+          </div>
+          <div class="actions">
+            <%= f.submit %>
+          </div>
+        <% end %>
+      </td><td valign="top">
+        <p style="margin-left: 10px">
+          List of Tags
+        <ul>
+          <li><b>{OFFERING_TITLE}:</b><br/>
+            Title of the Offerings will replace this tag.
+          </li>
+          <li><b>{OFFERING_DESCRIPTION}:</b><br/>
+            Description of the Offerings will replace this tag.
+          </li>
+          <li><b>{PACKAGE_TITLE}:</b><br/>
+            Title of the Package will replace this tag.
+          </li>
+          <li><b>{PACKAGE_DESCRIPTION}:</b><br/>
+            Description of the Package will replace this tag.
+          </li>
+
+
+
+          <li><b>{LINK}:</b><br/>
+            Attached Link will replace this tag.
+          </li>
+
+          <li><b>{USER_LOGIN}:</b><br/>
+            User_login name will replace this tag. (only for signup notification)
+          </li>
+
+          <li><b>{USER_NAME}:</b><br/>
+            User_login name will replace this tag. (only for forgot password template)
+          </li>
+
+
+             <li><b>{LINK}:</b><br/>
+            Attached Link will replace this tag.
+          </li>
+<br/>
+          <li>
+            Tags for Share with Friend Template:<br/>
+            <b>{SENDER_EMAIL}</b><br/>
+            <b>{SENDER_NAME}</b><br/>
+            <b>{FRIEND_EMAIL}</b><br/>
+            <b>{FRIEND_NAME}</b><br/>
+            <b>{MESSAGE}</b><br/>
+            <b>{LINK}</b><br/>
+          </li>
+
+<br/>
+          <li>
+            Tags for Potential Users Welcome Template:<br/>
+            <b>{EMAIL}</b><br/>
+            <b>{NAME}</b><br/>
+            <b>{LINK}</b><br/>
+            
+          </li>
+        
+
+        </ul>
+        </p>
+      </td>
+    </tr>
+  </table>
+<% end %>

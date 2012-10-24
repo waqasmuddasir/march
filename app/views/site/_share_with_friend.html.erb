@@ -1,0 +1,80 @@
+<div id="site_name" class="center" style="cursor:pointer;"><%=image_tag "logo_small.png",:onclick=>"showHideShare();"%></div>
+<div class="clear"></div>
+<div class="share_left">
+  <a href="Javascript:" style="text-decoration:none;" onclick="showHideShare();"> <%=image_tag "share_envelope.png" %> Tell a Friend </a>
+</div>
+<div class="clear"></div>
+<%= form_for :share_with_friend, :url => {:controller => "site", :action => "share_with_friend" } do |f| -%>
+
+     <p class="error" id="friend-errors">
+         <% if @friend.errors.any? %>
+
+          <% @friend.errors.full_messages.each do |msg| %>
+            <%= msg %><br/>
+          <% end %>
+
+        <% end %>
+      </p>
+      <table cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+          <td colspan="2">
+            <b>Your Details</b>
+          </td>
+        </tr>
+        <tr>
+          <td class="label" align="left">
+              Name:
+          </td>
+          <td align="right" style="padding-bottom:5px;">
+            <%= f.text_field :sender_name, :maxlength=>30,:class=>:textbox %>
+          </td>
+        </tr>
+        <tr>
+          <td class="label" align="left">
+              Email:
+          </td>
+          <td align="right" style="padding-bottom:5px;">
+            <%= f.text_field :sender_email, :class=>:textbox %>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" style="padding-bottom:5px;">
+            <b>Your Friend's Details</b>
+          </td>
+        </tr>
+        <tr>
+          <td class="label" align="left">
+              Name:
+          </td>
+          <td align="right" style="padding-bottom:5px;">
+             <%= f.text_field :friend_name, :maxlength=>40,:class=>:textbox %>
+          </td>
+        </tr>
+        <tr>
+          <td class="label" align="left">
+              Email:
+          </td>
+          <td align="right" style="padding-bottom:5px;">
+             <%= f.text_field :friend_email, :class=>:textbox %>
+          </td>
+        </tr>
+        <tr>
+          <td class="label" align="left" valign="top">
+              Message:
+          </td>
+          <td align="right" style="padding-bottom:5px;">
+             <%= f.text_area :message, :size=>"30x6", :class => :textarea %>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <p class="button" style="padding-left:25px;">
+                <%= submit_tag 'Send Message' %> or <a href="Javascript:" onclick="showHideShare();"> Cancel </a>
+            </p>
+          </td>
+        </tr>
+
+      </table>
+
+<%end%>

@@ -1,0 +1,30 @@
+<script language="javascript">
+  function validate_area_select()
+  {
+    var area_select = document.getElementById("area_id");
+
+    if (area_select.value=="none"){
+      alert("Please Select an area. ");
+      area_select.focus();
+      return false;
+    }
+    return true;
+  }
+
+</script>
+<br/>
+
+
+<div>
+<b>Get Emails by Area wise:</b>
+
+<%= form_tag({:action=>"extract_area_wise_email"}, :onsubmit=>"return validate_area_select();") do %>
+  <%= label_tag(:area_id, "Search by area:") %>
+  <%= select_tag :area_id,options_for_select(Area.all.collect { |c| [c.name, c.id] }.insert(0, 'none'),params[:area_id]) %>
+  <%= submit_tag("Get Emails") %>
+<% end %>
+
+</div>
+
+
+

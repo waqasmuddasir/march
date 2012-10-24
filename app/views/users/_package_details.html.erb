@@ -1,0 +1,34 @@
+<div id="package">
+<% if @package != nil && @package.offering !=nil %>
+  <div id="heading">
+    <%=@package.offering.title%>
+  </div>
+  <div id="image">
+    <%if !@package.merchant_package_image.nil?%>
+      <%=image_tag @package.merchant_package_image.public_filename%>
+    <%end%>
+  </div>
+  <div id="offering_details">
+    <%= raw @package.offering.description.html_safe %>
+  </div>
+  <div id="hrline"></div>
+  <div id="sub_heading">
+    <%=image_tag "sub_the_package.png"%>
+  </div>
+  <div id="details">
+    <%= raw @package.description.html_safe %>
+  </div>
+  <div id="hrline"></div>
+  <%!@package.offering.merchant_offerings[0].nil? && @merchant = Administration::Merchant.find(@package.offering.merchant_offerings[0].merchant_id)%>
+  <%if !@merchant.nil?%>
+    <div id="sub_heading">
+      <%= image_tag "sub_location.png" %>
+    </div>
+    <div class="map">
+       <img width="550" height="350" src="http://maps.google.com/maps/api/staticmap?markers=color:red|color:red|label:A|<%=@merchant.latitude%>,<%=@merchant.longitude%>&size=550x350&sensor=true&maptype=roadmap" />
+    </div>
+  <%end%>
+<%end%>
+  
+ </div>
+    

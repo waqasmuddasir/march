@@ -1,0 +1,36 @@
+<h1>Manage Contacts</h1>
+
+<% if @administration_contacts.count > 0 %>
+  <table>
+    <tr>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Email</th>
+      <th>Company</th>
+      <th>Address</th>
+      <th>Phone</th>
+      <th>Mobile</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+
+    <% @administration_contacts.each do |administration_contact| %>
+      <tr>
+        <td><%= administration_contact.first_name %></td>
+        <td><%= administration_contact.last_name %></td>
+        <td><%= administration_contact.email %></td>
+        <td><%= administration_contact.company %></td>
+        <td><%= administration_contact.address %></td>
+        <td><%= administration_contact.phone %></td>
+        <td><%= administration_contact.mobile %></td>
+        <td><%= link_to 'Show', administration_contact %></td>
+        <td><%= link_to 'Edit', edit_administration_contact_path(administration_contact) %></td>
+        <td><%= link_to 'Destroy', administration_contact, :confirm => 'Are you sure?', :method => :delete %></td>
+      </tr>
+    <% end %>
+  </table>
+<%end%>
+<br />
+
+<%= link_to 'New Contact', new_administration_contact_path %>

@@ -1,0 +1,200 @@
+<%= stylesheet_link_tag "jquery.bubblepopup.v2.3.1.css"  %>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+<%= javascript_include_tag "jquery.bubblepopup.v2.3.1.min.js"  %>
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+
+
+
+  $('#button_with_popup_selectable').CreateBubblePopup({
+
+                    selectable: true,
+
+                    position : 'left',
+                    align    : 'right',
+
+                    innerHtml: $("#sms_popup").html(),
+
+                    innerHtmlStyle: {
+                                            color:'#FFFFFF',
+                                            'text-align':'center'
+                                    },
+
+                    themeName: 	'all-black',
+                    themePath: 	'/images/jquerybubblepopup-theme',
+                    mouseOver : 'show',
+                    mouseOut : 'hide'
+
+            });
+            
+     $('#imgHelp').CreateBubblePopup({
+
+                    selectable: true,                    
+
+                    position : 'left',
+                    align    : 'right',
+
+                    innerHtml: $("#help_popup").html(),
+
+                    innerHtmlStyle: {
+                                            color:'#000000',
+                                            'text-align':'left'
+                                    },
+
+                    
+                    themePath: 	'/images/jquerybubblepopup-theme',
+                    mouseOver : 'show',
+                    mouseOut : 'hide'
+
+            });
+ 
+
+});
+function sendSMS(user_id)
+{
+  $("#edit_user_"+user_id).submit();
+}
+
+</script>
+ <div id="thank_message" style="display:none;">
+   <div class="center"><%= flash[:notice] %></div>
+  </div>
+
+<div class="left">
+  <%= render :partial => "users/package_details" %>
+</div>
+<div class="left">
+  <div class="redeem_box" style="width:350px;">
+    <div class="content">
+      <div class="redeem_heading_bg">
+        <div class="redeem_heading_text">
+          <%=image_tag "sub_how_to_redeem.png"%>
+        </div>
+      </div>
+      <%=raw @package.redemption_instructions%>
+      
+        
+        <%if !current_user.mobile.blank?%>
+          <p class="resend_sms_button">
+            <input type="button" value="" onclick="sendSMS('<%= current_user.id%>');" />
+          
+        <%else%>
+           <p class="send_sms_button">
+             <input type="button" value="" id="button_with_popup_selectable" />
+           
+        <%end%>
+              or <%= link_to "send as an email", :controller=> :users, :action=> :offer_redeemed_by_email,:id=>@package_id.to_i %> 
+          </p>
+      
+    </div>
+  </div>
+  <%if @package != nil%>
+  <div id="share_offer">
+    <div class="content">
+      <div class="heading">
+          <%=image_tag "sub_free_group_text.png"%> <%=image_tag "icon_help.png",:id => "imgHelp"%> <div class="right"><%=image_tag "icon_chatbubbles.png" %></div>
+          <div class="clear"></div>
+      </div>
+       <%= render :partial => "users/invite" %>
+    </div>    
+  </div>
+  <div id="share_offer_message">Inviting your friends and receiving SMS chat messages is free. Your normal network tariff applies to text messages you send to the group chat number.</div>
+<%end%>
+</div>
+<div class="clear"></div>
+<div class="hidden">
+  <%= render :partial => "users/send_sms" %>
+  <%= render :partial => "users/chat_help_box" %>
+</div>
+<!--
+<table style="width:100%;">
+  <tr><td colspan="2" style="background-color:#330000;line-height:10mm;color:#FFFFFF;text-align:center">Thanks for confirming your details - we’ve e-mailed redemption instructions to <%=  current_user.email %></td></tr>
+  <tr>
+    <td>
+      <table  style="width:600px">
+        <tr>
+          <td style="background-color:#DDDDDD;">
+            <h1><%=@package.offering.title%></h1>
+          <%=raw @package.offering.description%>
+        
+            <h1><%=@package.title%></h1>
+          <%=raw @package.description%>
+          </td>
+        </tr>
+        <tr>
+          <td style="background-color:#EEEEEE;">
+
+            <h3>How to Redeem</h3>
+            All our offers are redeemed via your mobile phone.
+
+            <ul>
+              <li>
+                <p><b>1.  Visit our Mobile Site</b></p>
+
+                <table>
+                  <tr>
+                    <td>
+                      <p>
+                        Get a link sent to your phone:
+                      </p>
+                      <%= button_to "Send SMS ", :controller=> :offered_packages,:action => :send_link_on_mobile, :id=>@package_id %>
+
+                    </td>
+                    <td width="50px">-OR-
+                    </td>
+                    <td>
+                      <p>
+                        enter the following into your phone’s web browser:
+                      </p>
+                      <p><%="http://#{ApplicationController::SITE_URL}/mobile/packages/show/#{@package_id}.xml/#{current_user.auth_token}"%></p>
+
+                    </td>
+                  </tr>
+                  <tr><td><br/></td></tr>
+                  <tr>
+                    <td width="50px">
+                      
+                      -OR-
+                    </td>
+                    <td colspan="2">
+                      <p>
+                        Get a link sent to your Email Address:
+                      </p>
+                      <%="pack("+@package_id.to_s+")"%> <br/>
+                      <%#= link_to :email, :url=>{:controller=> :users, :action=>"offer_redeemed_by_email", :id=>params[:package_id]} %>
+                      <%= button_to :email, :controller=> :users, :action=> :offer_redeemed_by_email,:id=>@package_id.to_i %>
+                      <%#= link_to :email, :url=>"/users/offer_redeemed_by_email", :id=>params[:package_id] %>
+                               
+                    </td>
+                  </tr>
+
+                </table>
+              </li>
+              <li>
+                <p><b>2.  Once you’re at Food Secret, hit ‘Redeem’</b></p>
+                <p>
+                  You’ll be shown a verification page, which will request the retailer to tap
+                  one of the symbols on your screen to verify the package.
+                </p>
+                <p>
+                  Your discount will be applied at the checkout.
+                </p>
+              </li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+    </td>
+    <td>
+      <table style="width:100%;background-color:silver; height:500px;">
+        <tr>
+          <td>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+-->

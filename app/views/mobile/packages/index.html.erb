@@ -1,0 +1,11 @@
+
+<%=@message%>
+<%if @packages != nil %>
+<ul  class="pageitem">
+  <li class="textbox"><span class="header">Subscribed Packages</span>
+    </li>
+  <%@packages.each do |package|%>
+    <li class="menu"><a href="/mobile/packages/<%=package['id']%>/<%=session[:auth_token]%>"><span class="name"><%= package['title'] %> </span></a>&nbsp; &nbsp;<span class="arrow"></span></li>
+  <%end%>
+</ul>
+<%end%>

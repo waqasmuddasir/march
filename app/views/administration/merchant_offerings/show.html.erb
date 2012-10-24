@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @administration_merchant_offering.title %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @administration_merchant_offering.description %>
+</p>
+
+<p>
+  <b>Merchant:</b>
+  <%= @administration_merchant_offering.merchant_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_administration_merchant_offering_path(@administration_merchant_offering) %> |
+<%= link_to 'Back', administration_merchant_offerings_path %>

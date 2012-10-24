@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @administration_merchant_package.title %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= raw @administration_merchant_package.description %>
+</p>
+
+<p>
+  <b>Redemption Instructions:</b>
+  <%= raw @administration_merchant_package.redemption_instructions %>
+</p>
+
+
+<p>
+  <b>Start date:</b>
+  <%= @administration_merchant_package.start_date.strftime('%a %b %d, %Y') %>
+</p>
+
+<p>
+  <b>End date:</b>
+  <%= @administration_merchant_package.end_date.strftime('%a %b %d, %Y') %>
+</p>
+<% if @administration_merchant_package.start_date<= Date.today && @administration_merchant_package.end_date>= Date.today %>
+  <p style=" border:  silver solid thin; padding: 10px 10px 10px 10px ">
+    <b>Offer Link:</b><br/>
+
+    <a href=<%="http://#{ApplicationController::SITE_URL}/signup/#{@administration_merchant_package.id}"%> target="_blank"> <%="http://#{ApplicationController::SITE_URL}/signup/#{@administration_merchant_package.id}" %> </a>
+  </p>
+  
+<%end%>
+<%if !@administration_merchant_package.merchant_package_image.nil? %>
+    <%= image_tag  @administration_merchant_package.merchant_package_image.public_filename %>
+    <%= image_tag  @administration_merchant_package.merchant_package_image.public_filename(:medium) %>
+<%end%>
+
+  <br/>
+<%= link_to 'Edit', edit_administration_merchant_package_path(@administration_merchant_package) %> |
+<%= link_to 'Back', administration_merchant_packages_path %>

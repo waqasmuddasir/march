@@ -1,0 +1,25 @@
+
+<%#*<div style="margin:10px ">%>
+<%#*<div style="padding: 10px 10px 10px 10px; border: solid silver thin; margin: 5px;float:left; width:300px">%>
+<%#= render :partial=>"add_template" %>
+<%#*</div>%>
+<%#*<div style="padding: 10px 10px 10px 10px; border: solid silver thin ; margin: 5px;float:right; width:50% ">%>
+<%#= render :partial=>"csv_extractor" %>
+<%#*</div>%>
+<%#*</div>%>
+<%#*<div style="padding: 10px 10px 10px 10px; border: solid silver thin; margin: 5px ">%>
+<%#= render :partial=>"email_sender", :object=>{:csv=>@csv} %>
+<%#*</div>%>
+
+<div style="padding: 10px 10px 10px 10px; border: solid silver thin ; margin: 5px;float:none;">
+<%= render :partial=>"area_wise_email_extractor" %>
+
+</div>
+
+<div style="padding: 10px 10px 10px 10px; border: solid silver thin ; margin: 5px;float:none;">
+<%= render :partial=>"csv_extractor" %>
+
+</div>
+<div style="padding: 10px 10px 10px 10px; border: solid silver thin; margin: 5px ">
+<%= render :partial=>"email_sender", :object=>{:csv=>@csv} %>
+</div>

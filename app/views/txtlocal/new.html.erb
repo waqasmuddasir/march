@@ -1,0 +1,21 @@
+<%= form_for(:txt_local,:url=> {:action=>"create"}) do |f| %>
+
+
+ 
+  <div class="field">
+    <%= label_tag :sender %><br />
+    <%= text_field_tag :sender %>
+  </div>
+  <div class="field">
+    <%= label_tag :content %><br />
+    <%= text_field_tag :content %>
+  </div>
+  <div class="field">
+    <%= label_tag :inNumber %><br />
+    <%= text_field_tag :inNumber %>
+  </div>
+  
+  <div class="actions">
+    <%= submit_tag %>
+  </div>
+<% end %>

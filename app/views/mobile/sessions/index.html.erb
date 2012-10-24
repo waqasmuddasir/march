@@ -1,0 +1,13 @@
+<%i = 1%>
+ <%=@root.elements["offering["+i.to_s+"]/description"].text%> <br/>
+
+ <%@root.elements["offering[1]/packages"].each_element do |child|%>
+  <%child%>
+ <%end%>
+ <br/><br/><br/><br/><br/><br/><br/>
+<%@root.each_element do |child| %>
+  <%=child.text%>
+   <%child.each_element do |sub_child|%>
+     <%=sub_child%>    <%=sub_child.text%> <br/>
+    <%end%>
+<%end%>

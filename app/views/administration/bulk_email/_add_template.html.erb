@@ -1,0 +1,7 @@
+
+<%= form_tag({:controller=>"administration/bulk_email",:action => "add_email_template"}, :method => "post") do %>
+<div><b>Select Template:</b></div>
+<div><%= select_tag :template_id, options_for_select(Administration::EmailTemplate.all.collect { |c| [c.name, c.id] }.insert(0, 'none')) %>
+        <%= submit_tag("get")%></div>
+
+  <% end %>

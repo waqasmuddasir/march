@@ -1,0 +1,27 @@
+<h1>Manage Packages</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Start date</th>
+    <th>End date</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @administration_merchant_packages.each do |administration_merchant_package| %>
+  <tr>
+    <td><%= administration_merchant_package.title %></td>    
+    <td><%= administration_merchant_package.start_date.strftime('%a %b %d, %Y') %></td>
+    <td><%= administration_merchant_package.end_date.strftime('%a %b %d, %Y') %></td>
+    <td><%= link_to 'Show', administration_merchant_package %></td>
+    <td><%= link_to 'Edit', edit_administration_merchant_package_path(administration_merchant_package) %></td>
+    <td><%= link_to 'Destroy', administration_merchant_package, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Merchant package', new_administration_merchant_package_path %>

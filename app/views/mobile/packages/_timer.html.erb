@@ -1,0 +1,53 @@
+<div id="package_timer" style="display:none;">
+<div  id="main">
+  <%if @offering != nil && @package != nil%>
+  <span class="header"><%= @offering["title"]%></span>
+
+  <div class="clear"></div>
+    <%if !@package["redeemed_at"].nil? %>
+    <div class="graymessage">Redeemed: <%=  @package["redeemed_at"] %></div>
+    <%end%>
+  <%end%>
+      <div class="center">
+            <div class="box">
+                <h5>Show Screen to Cashier Within Next</h5>
+                <div style="font-size:80px;font-weight:bold">
+                  <span id="minutes"></span> :
+                  <span id="seconds"></span>
+                </div>
+            </div>
+
+      <h5>Merchant Verification (Tap to Select)</h5>
+  <%#= form_for(:packages, :url => {:controller => "packages",:action => "verify_code" }) do |f|%>
+
+    <div id="merchant_codes" >
+
+      <%Mobile::PackagesController::CODES.each do |key,value|%>
+        <div class="unselected_code" id="code_<%=key%>" onclick="selectCode(this.id,'<%=key%>');">
+          <%= image_tag "merchant_codes/#{value}.png" %>
+        </div>
+
+        <%if key.to_i == 4%>
+          <div class="clear"></div>
+        <%end%>
+      <%end%>
+      <div class="clear"></div>
+    </div>
+
+      <p class="button"><input type="button" value="Verify" onclick="verifyCode();" /> </p>
+
+    <%=hidden_field_tag :verification_code%>
+    
+    
+    <%=hidden_field_tag :id,params[:id]%>
+
+
+  <%#end%>
+
+
+
+  </div>
+
+</div>
+
+</div>

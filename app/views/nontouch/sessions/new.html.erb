@@ -1,0 +1,18 @@
+<p>Please sign in with the e-mail address and password you used on your computer</p>  
+  <div class="error"><%= flash[:error] %></div>
+  <%= form_for(:session, :url => {:controller => "/nontouch/sessions", :action=>"create"}) do |f|-%>
+    <div>
+      <p><%= label_tag 'Email Address'%><br />
+      <%= f.text_field 'login',:class=>"textbox"%></p>
+
+      <p><%= label_tag 'Password' %><br/>
+      <%= f.password_field 'password',:class=>"textbox" %></p>
+      
+    </div>
+
+  <div class="button"><%= submit_tag 'Sign in'%> </div>
+  <p>
+      <%=link_to "Forgot password",:controller => "nontouch/users",:action => "forgot_password"%>
+  <p>
+  <% end -%>  
+

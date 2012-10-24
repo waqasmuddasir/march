@@ -1,0 +1,38 @@
+
+<h3>Save new email Addresses</h3>
+<span style="color:red"><%=  flash[:notice]%></span>
+<div style="padding: 10px 10px 10px 10px; width:100% ">
+
+<%= javascript_include_tag "csv_file_validator" %>
+
+
+
+
+<%=flash[:csv_error]%>
+
+<%= form_tag({:controller=>"administration/bulk_email",:action => 'upload_n_save_csv'}, :onsubmit=>"return validate_file_format();",:multipart => true) do %>
+<div>
+Choose CSV file to upload:
+<br/>
+  <%= file_field 'upload', 'datafile' %>
+  <br/>
+  <br/>
+  Upload and save to Database<br/>
+  <%= submit_tag "upload & save" %>
+</div>
+<div>
+
+</div>
+<% end %>
+
+  <br/>
+  Email Addresses that are already in the database will be rejected.
+
+
+
+
+</div>
+
+
+
+   

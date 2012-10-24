@@ -1,0 +1,11 @@
+
+<div id="merchant_verify_response">
+  <%if !@status.nil? && !@error.nil? && !@merchant_message.nil?%>
+    <h3><%= raw @status%></h3>
+    <p><%= raw  @error %></p>
+    <p>
+     <%= raw @merchant_message%>
+    </p>
+  <%end%>
+
+</div>

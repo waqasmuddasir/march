@@ -1,0 +1,13 @@
+<h3><%=flash[:notice]%></h3>
+<% if @package!=nil %>
+<h3><%=@package.offering.title%></h3>
+<%=raw @package.offering.description%>
+<h3><%=@package.title%></h3>
+<%= raw @package.description%>
+
+ <% if @package.start_date<= Date.today && @package.end_date>= Date.today %>
+<h3>Redemption:</h3>
+  <%= link_to "email me the redemption link ", :action=>:offer_redeemed_by_email, :id=>@package.id %> <br/>
+  <%= link_to "send redemption link to my mobile",:controller => :offered_packages,:action => :send_link_on_mobile,:id=>@package.id %>
+<%end%>
+  <%end%>

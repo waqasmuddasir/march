@@ -1,0 +1,1010 @@
+/* 
+    Document   : style
+    Created on : Nov 27, 2010, 2:14:45 PM
+    Author     : Nasir Ibrahim
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+body {
+	font: 12px/18px Helvetica; background-color: #fff; color: #000;
+}
+#wrapper
+{
+	width:933px;
+	margin:0px auto;
+	border-right:0px solid #ededed;
+	border-left:0px solid #ededed;
+	background-color:#fff;
+	min-height:600px;
+
+}
+
+#fb_wrapper
+{
+	width:520px;
+	margin:0px auto;
+	border-right:0px solid #ededed;
+	border-left:0px solid #ededed;
+	background-color:#fff;
+	min-height:600px;
+
+}
+
+#top
+{
+    width:933px;
+    height:82px;
+    padding-top:10px;
+}
+#top #site_name
+{
+    float:left;
+    background-image:url("/images/ultravie_logo_headr.png");
+    background-position:left;
+    background-repeat:no-repeat;
+    width:120px;
+    height:52px;
+    cursor:pointer;    
+}
+#top #private_access
+{
+    background-image:url("/images/catlabel_privateaccess.png");
+    background-repeat:no-repeat;
+    background-position:left;
+    padding-top:5px;
+    width:116px;
+    height:18px;
+}
+#top #account
+{
+    padding-top:45px;
+    float:right;
+    font-size:16px;
+    
+}
+#top #account a
+{   
+    color:#000;
+    text-decoration:none;
+}
+#top #account img
+{
+    border:0px;
+    padding-left:20px;
+    padding-right:20px;
+}
+#hrline
+{
+    width:100%;
+    height:1px;
+    background-color:#999999;
+}
+#footer
+{
+    font-size:10px;
+    color:#999999;
+    height:30px;
+    padding-top:10px;
+}
+#footer a
+{
+    color:#999999;
+}
+#footer #left
+{
+    float:left;
+}
+#footer #right
+{
+    float:right;
+}
+#contents
+{
+    padding-top:20px;
+    min-height:600px;
+}
+.box
+{
+    background-color:#f8f8f8;
+    width:330px;
+    border:1px solid #b8b8b8;
+}
+.box .content
+{
+    padding-top:20px;
+    padding-left:10px;
+    margin-bottom:40px;
+}
+.box .content .heading
+{
+    font-size:18px;
+    font-weight:bold;
+}
+.box .content .sub_heading
+{
+    font-size:10px;
+    font-style:italic;
+}
+.box .content .label
+{
+    font-size:14px;
+}
+.box .content .textbox
+{
+    padding:5px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #000000;
+    width:230px;
+    height:30px;
+    font-size:14px;
+}
+.box .content .button input
+{
+
+	height: 50px;
+	border: 1px solid #000;
+	font-weight: bold;
+	font-size: 18px;
+	overflow: hidden;
+	background: none;
+        background-color:#fff;
+        padding-left:20px;
+        padding-right:20px;
+        margin-right:10px;
+}
+.box .content .button input:hover
+{
+
+	height: 50px;
+	border: 1px solid #000;
+	font-weight: bold;
+	font-size: 18px;
+	overflow: hidden;
+	background: none;
+        background-color:#f8f8f8;
+        padding-left:20px;
+        padding-right:20px;
+        margin-right:10px;
+        cursor:pointer;
+}
+.box .content a
+{
+    color:#000;
+    font-size:12px;
+    font-weight:bold;
+}
+.box .content li
+{
+    padding-top:15px;
+    font-size:14px;
+}
+.box .content ol
+{
+    padding-bottom:20px;
+}
+.error
+{
+    font-size:13px;
+    color:red;
+}
+.center {
+	margin: auto;
+	display: block;
+	text-align: center!important;
+}
+.left{
+    float:left;
+}
+.right{
+    float:right;
+}
+.checkbox{
+  width: 19px;
+  height: 25px;
+  padding: 0 5px 0 0;
+  display: block;
+  clear: left;
+  float: left;
+}
+#package
+{
+    padding-left:10px;
+    width:550px;
+    padding-top:10px;
+    padding-right:20px;    
+}
+#package #heading{
+    font-size:42px;
+    color:#4D4D4D;
+    padding-bottom:10px;
+    padding-top:10px;
+    line-height:1.0em;
+}
+#package #image img{
+    border:0px;
+    width:518px;
+    height:239px;
+    margin-top:10px;
+}
+#package #offering_details{
+    font-size:12px;
+}
+#package #sub_heading
+{
+    font-size:18px;
+    padding-top:10px;
+    
+}
+#package #details{
+    font-size:12px;
+}
+.success_message
+{
+    overflow: hidden;
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height:30px;
+    background-color:#697D1E;
+    color:#fff;
+    padding-top:14px;
+    font-size:16px;
+    display:none;
+    margin:0;
+    opacity: .7;/*
+    -moz-border-radius:8px;
+    -webkit-border-radius:8px;*/
+}
+.failure_message{
+    overflow: hidden;
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height:30px;
+    background-color:#702B1B;
+    color:#fff;
+    padding-top:14px;
+    font-size:16px;
+    padding-bottom:10px;
+    display:none;
+    margin:0;
+    opacity: .7;
+}
+.clear
+{
+    clear:both;
+}
+#merchant_codes
+{
+    
+}
+#merchant_codes .unselected_code
+{
+    display:inline;
+    float:left;
+    margin:5px;
+    cursor:pointer
+}
+#merchant_codes .selected_code
+{
+    display:inline;
+    float:left;
+    margin:5px;
+    cursor:pointer;
+    border: solid red;
+}
+
+.jquerybubblepopup .jquerybubblepopup-all-black #sms_popup
+{
+    padding:10px;
+    color:#fff;
+    font-size:14px;
+}
+.jquerybubblepopup #sms_popup .textbox{
+    padding:5px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #000000;
+    width:200px;
+    height:20px;
+    font-size:14px;
+}
+.jquerybubblepopup #sms_popup .button input{
+        height: 30px;
+	border: 1px solid #000;
+	font-weight: bold;
+	font-size: 16px;
+	overflow: hidden;
+	background: none;
+        background-color:#fff;
+        padding-left:20px;
+        padding-right:20px;
+        margin-right:10px;
+}
+.hidden{
+    display:none;
+}
+.horizontalspacer{
+    padding-top:10px;
+    width:100%;
+}
+.map
+{
+    padding:10px;
+}
+.account_detail
+{
+    
+    width:330px;
+    
+}
+.account_detail .content
+{
+    padding-top:20px;
+    padding-left:10px;
+    margin-bottom:40px;
+}
+.account_detail .content .heading
+{
+     font-size:42px;
+    color:#4D4D4D;
+    padding-bottom:20px;
+}
+.account_detail .content .label
+{
+    font-size:14px;
+}
+.account_detail .content .textbox
+{
+    padding:5px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #000000;
+    width:230px;
+    height:30px;
+    font-size:14px;
+}
+.account_detail .content .button input
+{
+
+	height: 50px;
+	border: 1px solid #000;
+	font-weight: bold;
+	font-size: 18px;
+	overflow: hidden;
+	background: none;
+        background-color:#fff;
+        padding-left:20px;
+        padding-right:20px;
+        margin-right:10px;
+}
+.account_detail .content .button input:hover
+{
+
+	height: 50px;
+	border: 1px solid #000;
+	font-weight: bold;
+	font-size: 18px;
+	overflow: hidden;
+	background: none;
+        background-color:#f8f8f8;
+        padding-left:20px;
+        padding-right:20px;
+        margin-right:10px;
+        cursor:pointer;
+}
+.account_detail .content a
+{
+    color:#000;
+    font-size:12px;
+    font-weight:bold;
+}
+#home{
+    
+    margin:0px auto;
+    margin-top:20px;
+    width:450px;
+    border: 0px solid #999;
+}
+#home #site_name
+{
+    padding:50px;
+    font-size:60px;
+}
+#home #home_contents
+{
+    min-height:500px;
+}
+#home #footer
+{
+    width:62%;
+    margin-left:81px;
+}
+#home #footer #footer_line
+{    
+    height:1px;
+    background-color:#999999;    
+}
+#home #footer a{
+    color:#b8b8b8;
+    text-decoration:none;
+    padding:10px;
+}
+#home #footer a:hover{
+    text-decoration:underline;
+    color:#1A1A1A;
+}
+
+/********************************TOP LOGIN ****************************************/
+
+#slide-panel{
+    background-color:#666;
+    border-bottom-style:solid;
+    border-bottom-width:2px;
+    border-color:#333;
+    display:none;
+    height:65px;
+    margin:0;
+    padding-top:15px;
+    width:100%;
+    position:absolute;
+    top:0px;
+    left:0px;
+    font-size: 12px;
+    color:#fff;
+}
+.slide {
+    width:100%;
+    margin:auto;
+}
+.close_button{
+    float:right;
+    padding:7px;
+    right:10px;
+    text-transform:uppercase;
+    font-size:14px;
+    
+}
+.close_button a{
+    color:#000;
+    text-decoration:none;
+}
+.close_button a:hover{
+    color:#000;
+}
+.btn-slide:link, .btn-slide:visited{
+   
+    top:0px;
+    right:0px;
+    float:right;
+    display:block;
+    font-size:14px;
+    text-transform:uppercase;
+    height:26px;   
+    line-height:22px;
+    text-align:center;
+    text-decoration:none;
+    width:100px;    
+    color:#666666;
+    
+}
+.loginform {
+    
+    width:100%;
+    margin:auto;
+    
+}
+
+.leftdetails{
+
+    
+    float:left;
+    padding-left:10px;
+    padding-top:8px;
+}
+.leftdetails a{
+    color:#fff;
+}
+.leftdetails a:hover{
+    color:#333;
+}
+.formdetails {
+    float:right; 
+    padding:5px;
+    padding-right:20px;
+}
+.loginform .formdetails .textbox{
+    padding:2px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #000000;
+    width:200px;
+    height:20px;
+    font-size:12px;
+}
+.loginform .formdetails .button{
+        height: 25px;
+	border: 1px solid #000;
+	font-weight: bold;
+	font-size: 12px;
+	overflow: hidden;
+	background: none;
+        background-color:#000;
+        padding-left:10px;
+        padding-right:10px;
+        color:#fff;
+
+}
+
+.loginregister {
+   float:right;
+    color:#999;
+    padding:5px;
+    padding-right:20px;
+}
+.loginregister a:link, .loginregister a:visited {    
+    
+    text-decoration:underline;
+    color:#fff;
+}
+.loginregister a:hover{
+    color:#1A1A1A;
+}
+.loginform h2 {
+    padding:10px 10px 10px 0;
+    font-size:18px;
+    font-weight:normal;
+    text-transform:uppercase;
+}
+.loginform ul li {
+    display:inline;
+}
+.loginform ul li a:link, .loginform ul li a:visited {
+    
+    
+    text-decoration:underline;
+}
+.redeem_box
+{
+    background-color:#333;
+    color:#fff;
+    width:330px;
+    border:1px solid #b8b8b8;
+}
+.redeem_box .content
+{
+    margin-bottom:40px;
+    color:#fff;
+    
+}
+
+.redeem_box .content .redeem_heading_bg
+{
+    width:100%;
+    background-image:url("/images/header_bg_silver.png");
+    background-repeat:repeat-x;
+    height:66px;
+
+}
+.redeem_box .content .redeem_heading_bg .redeem_heading_text
+{
+    text-transform:uppercase;
+    padding-left:10px;
+    padding-top:17px;
+    height:5px;
+    color:#666666;
+    font-size:24px;
+    font-weight:bold;
+    
+
+}
+.redeem_box .content .send_sms_button input
+{
+
+	height: 41px;
+        width:186px;
+	background-image:url("/images/button_sendsms.png");
+        background-repeat:no-repeat;
+	font-weight: bold;
+	font-size: 14px;
+	overflow: hidden;
+        color:#fff;
+        margin-left:5px;
+        border:0px;
+        
+
+}
+.redeem_box .content .resend_sms_button input
+{
+
+	height: 41px;
+        width:186px;
+	background-image:url("/images/button_resendsms.png");
+        background-repeat:no-repeat;
+	font-weight: bold;
+	font-size: 14px;
+	overflow: hidden;
+        color:#fff;        
+        border:0px;
+        margin-left:5px;
+
+
+}
+.redeem_box .content a
+{
+    color:#fff;
+    font-size:12px;
+    font-weight:bold;
+}
+.redeem_box .content li
+{
+    padding-top:15px;
+    font-size:14px;
+    color:#fff;
+}
+.redeem_box .content ol
+{
+    padding-bottom:20px;
+    color:#fff;
+}
+
+#share_offer
+{
+    background-color:#fff;
+    color:#000;
+    width:350px;
+    border:1px solid #b8b8b8;
+    margin-top:10px;
+}
+#share_offer .content
+{
+    padding-top:20px;
+    padding-left:10px;
+    margin-bottom:40px;
+}
+#share_offer .content .heading
+{    
+    padding-top:0px;
+}
+#share_offer .content .heading .right
+{
+    
+    float:right;
+    padding-right:10px;
+}
+#share_offer .content .label
+{
+    font-size:12px;
+}
+#share_offer .content .textbox
+{
+    padding:5px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #000000;
+    width:221px;
+    height:20px;
+    font-size:14px;
+}
+#share_offer .content .number_textbox
+{
+    padding:5px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #000000;
+    width:170px;
+    height:20px;
+    font-size:14px;
+}
+#share_offer .content .button input
+{
+
+	height: 41px;
+	overflow: hidden;
+	background-image:url("/images/buttonbg_silver.png");
+        background-repeat:repeat-x;
+	font-size: 18px;
+	overflow: hidden;
+        padding-left:20px;
+        padding-right:20px;
+        border:0px;
+}
+
+#share_offer .content a
+{
+    color:#000;
+    font-size:12px;
+    font-weight:bold;
+}
+#share_offer .content li
+{
+    padding-top:15px;
+    font-size:14px;
+}
+#share_offer .content ol
+{
+    padding-bottom:20px;
+}
+#share_offer_message
+{
+    background-color:#fff;
+    color:#666666;
+    width:350px;
+    font-size:11px;
+    padding-top:5px;
+}
+#chat_help_box
+{
+   width:500px;
+   height:350px;
+   padding:10px;
+
+}
+#chat_help_box #left_content
+{
+    float:left;
+    width:150px;
+
+}
+#chat_help_box #left_content #heading
+{
+    padding-top:10px;
+
+}
+
+#chat_help_box #right_content
+{
+    float:right;
+    padding-right:10px;
+    width:300px;
+}
+.group
+{
+
+    background-color:#fff;
+    color:#000;
+    width:520px;
+    border:1px solid #b8b8b8;
+    margin-top:10px;
+    font-size:12px;
+    
+}
+.main_group_heading
+{
+    color:#333;
+    font-size:24px;
+    font-weight:bold;
+    margin-top:10px;
+    margin-bottom:10px;
+
+}
+.group .content
+{
+    
+    padding-left:10px;
+    margin-bottom:40px;
+    color:#333333;
+
+}
+.group .content .heading
+{
+    padding-top:15px;
+    font-size:18px;
+    font-weight:bold;
+    padding-bottom:15px;
+}
+.group .content .number
+{
+    
+    font-size:14px;
+    font-weight:bold;
+    padding-bottom:5px;
+    
+}
+.group .content .label
+{
+    font-size:12px;
+}
+
+.group .content .button input
+{
+
+	height: 41px;
+	overflow: hidden;
+	background-image:url("/images/buttonbg_silver.png");
+        background-repeat:repeat-x;
+	font-size: 18px;
+	overflow: hidden;
+        padding-left:10px;
+        padding-right:10px;
+        border:0px;
+}
+.group .content .button
+{
+
+	height: 41px;
+	overflow: hidden;
+	background-image:url("/images/buttonbg_silver.png");
+        background-repeat:repeat-x;
+	font-size: 18px;
+	overflow: hidden;
+        padding-left:10px;
+        padding-right:10px;
+        border:0px;
+        cursor:pointer;
+}
+.group .content .textbox
+{
+    padding:2px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #000000;
+    width:230px;
+    height:18px;
+    font-size:14px;
+}
+.group .content .small_textbox
+{
+    padding:2px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #000000;
+    width:187px;
+    height:18px;
+    font-size:14px;
+}
+.group .content .invite_button
+{
+     height: 30px;
+	border: 1px solid #000;
+	font-weight: bold;
+	font-size: 12px;
+	overflow: hidden;
+	background: none;
+        background-color:#000;
+        padding-left:10px;
+        padding-right:10px;
+        color:#fff;
+        margin-left:20px;
+}
+.group .content .members{
+    padding-top:5px;
+}
+.group .content .members .name{
+    float:left;
+    width:140px;
+}
+.group .content .members .phone{
+    float:left;
+    padding-left:5px;
+    width:180px;
+}
+.group .content .members .user_type{
+    float:left;
+    padding-left:5px;
+    text-transform:uppercase;
+    width:80px;
+}
+.group .content .members .link{
+    float:left;
+    padding-left:5px;
+}
+.group .content .members .link_text{
+    
+    color:#333;
+}
+.group .content .members .remove{
+    float:right;    
+    background-image:url("/images/icon_removeuser.png");
+    background-position:left;
+    background-repeat:no-repeat;
+    width:20px;
+    height:20px;
+    padding-right:5px;
+
+}
+.group .content .members a{    
+    font-size:10px;
+}
+.group .content a
+{
+    color:#000;
+    font-size:12px;
+    font-weight:bold;
+}
+.group .content li
+{
+    padding-top:15px;
+    font-size:14px;
+    list-style-type:none;
+}
+#using_chat
+{
+    background-color:#333;
+    color:#fff;
+    width:400px;
+    border:1px solid #b8b8b8;
+    margin-top:10px;
+}
+#using_chat .content
+{
+    
+    margin-bottom:40px;
+    color:#fff;
+
+}
+#using_chat .content p{
+    padding-left:10px;
+    padding-right:10px;
+}
+#using_chat .content .sub_heading
+{
+    font-size:14px;
+    margin-top:10px;
+    margin-bottom:10px;
+    margin-left:10px;
+    font-weight:bold;
+    
+}
+#using_chat .content .redeem_heading_bg
+{
+    width:100%;
+    background-image:url("/images/header_bg_silver.png");
+    background-repeat:repeat-x;
+    height:66px;
+
+}
+#using_chat .content .redeem_heading_bg .redeem_heading_text
+{
+    text-transform:uppercase;
+    padding-left:10px;
+    padding-top:17px;
+    height:5px;
+    color:#666666;
+    font-size:24px;
+    font-weight:bold;
+
+
+}
+#using_chat .content .instructions{
+    padding-left:10px;
+    padding-right:10px;
+}
+#using_chat .content .instructions .command_name{
+    width:100px;
+    float:left;
+    padding-bottom:10px;
+}
+#using_chat .content .instructions .command_description{
+    
+    float:left;
+    width:250px;
+    padding-bottom:10px;
+}
+#using_chat .content a
+{
+    color:#fff;
+    font-size:12px;
+    font-weight:bold;
+}
+#using_chat .content li
+{
+    padding-top:15px;
+    font-size:12px;
+    color:#fff;
+}
+#using_chat .content ol
+{
+    padding-bottom:20px;
+    color:#fff;
+}

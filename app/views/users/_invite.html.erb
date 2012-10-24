@@ -1,0 +1,28 @@
+
+<%=form_for(:member, :url => {:controller=>"users", :action=>"send_invitation"}) do |f|%>
+ <p class="error">
+         <% if @group_member.errors.any? %>
+
+          <% @group_member.errors.full_messages.each do |msg| %>
+            <%= msg %><br/>
+          <% end %>
+
+        <% end %>
+      </p>
+      <p class="label">
+        Share all the details for this offer and chat with the entire group by texting one number.
+
+      </p>
+<p class="label">
+        Friend's Name <%= f.text_field :name, :maxlength=>15,:class=>:textbox %>
+</p>
+
+<p class="label">
+        Friend's Mobile &nbsp;&nbsp;(+44)&nbsp;<%=f.text_field :mobile,:onkeydown => "validateNumberField(event);",:class=>:number_textbox%>
+</p>
+<p class="button">
+  <%=submit_tag "Invite a Friend" %>
+</p>
+<input id="member_package_id" name="member[package_id]" type="hidden" value="<%=@package.id%>"> 
+
+<%end%>

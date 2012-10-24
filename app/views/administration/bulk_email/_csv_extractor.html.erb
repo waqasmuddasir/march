@@ -1,0 +1,19 @@
+<%= javascript_include_tag "csv_file_validator" %>
+
+<div>
+<b>Upload Email Address CSV file:</b>
+
+<%=flash[:csv_error]%>
+
+<%= form_tag({:controller=>"administration/bulk_email",:action => 'extract_csv'}, :onsubmit=>"return validate_file_format();",:multipart => true) do %>
+<div>
+
+  <%= file_field 'upload', 'datafile' %><%= submit_tag "upload" %>
+</div>
+
+<% end %>
+
+</div>
+
+
+

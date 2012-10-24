@@ -1,0 +1,155 @@
+<%=stylesheet_link_tag "tabs.css"%>
+<script language="javascript">
+  var is_middle = true;
+  var is_first = false;
+  $(document).ready(function() {
+        
+    $(".tab_content").hide(); //Hide all content
+    var loc = window.location.pathname;
+    var page = loc.split("/");    
+    var pathName = loc.substring(loc.lastIndexOf('/') + 1);
+    
+    if(pathName == "signup")
+    {
+      $("#animate").hide();
+      $("ul.tabs li a").removeClass("active_tab");
+      $("#signup").addClass("active_tab");
+      $("#tab2").fadeIn();
+      is_middle = false;
+      is_first = false;
+      
+    }
+    else if(pathName == "share")
+    {
+      $("#animate").hide();
+      $("ul.tabs li a").removeClass("active_tab");
+      $("#share").addClass("active_tab");
+      $("#tab3").fadeIn();     
+      is_middle = false;
+      is_first = false;
+      
+    }
+    //When page loads...
+	
+    //$("ul.tabs li:first").addClass("active").show(); //Activate first tab
+    //$(".tab_content:first").show(); //Show first tab content
+        
+    //On Click Event
+    $("ul.tabs li").click(function() {
+      if(is_middle)
+        {
+          $("#animate").hide("slow");
+          is_middle = false;
+          is_first = true;
+        }
+      $("ul.tabs li").removeClass("active"); //Remove any "active" class
+      $("ul.tabs li a").removeClass("active_tab");
+      $(this).find("a").addClass("active_tab"); //Add "active" class to selected tab
+      $(".tab_content").hide(); //Hide all tab content
+      var activeTab = $(this).find("a").attr("href"); //Find the href attribute value to identify the active tab + content
+
+      if(is_first)
+        {
+          $(activeTab).show("slow");
+          is_first = false;
+        }
+      else
+        {
+          $(activeTab).fadeIn(); //Fade in the active ID content
+        }
+
+      return false;
+    });
+    $(".btn-slide").click(function(){
+      $("#slide-panel").slideToggle("slow");
+    });
+    if(pathName == "share")
+      {
+        showHideShare();
+      }
+
+  });
+  function showSignup()
+  {
+    $("#share-friend").hide("slow");
+    $("#all_contents").show("slow");
+    $("#animate").hide("slow");
+    $(".tab_content").hide(); //Hide all content
+    $("ul.tabs li a").removeClass("active_tab");
+    $("#signup").addClass("active_tab");
+    $("#tab2").fadeIn();
+    is_middle = false;
+      is_first = false;
+  }
+  function showHideShare()
+  {    
+    $("#share-friend").slideToggle("slow");
+    $("#all_contents").slideToggle("slow");
+
+  }
+  function clearFriendShareErrors()
+  {
+    $("#friend-errors").html("");
+    showHideShare();
+  }
+  function cancelSignIn()
+  {
+    $("#slide-panel").slideToggle("slow",function(){
+      showSignup();
+    });
+    
+    
+  }
+  function collapse()
+  {
+    $("#animate").show("slow");
+    $(".tab_content").hide();
+    $("ul.tabs li").removeClass("active"); //Remove any "active" class
+    $("ul.tabs li a").removeClass("active_tab");
+    is_middle = true;
+    is_first = false;    
+  }  
+</script>
+
+
+<div id="home">
+  
+  <div id="home_contents">
+    <div id="all_contents">
+    <div style="height:150px;width:100px;" id="animate"></div>
+    <div id="site_name" class="center" style="cursor:pointer;"><%=image_tag "logo.png",:onclick=>"collapse();"%></div>
+    <ul class="tabs">
+      <li><a href="#tab1"  id="about">ABOUT</a></li>
+      <li class="separator">></li>
+      <li><a href="#tab2"  id="signup">SIGN UP</a></li>
+      <li class="separator">></li>
+      <li><a href="#tab3"  id="share">SHARE</a></li>
+    </ul>
+
+    <div class="tab_container">
+      <div id="tab1" class="tab_content">
+        <%= render :partial => "#{AboutUsMessage.find(:first, :conditions=>"id = '#{@ip.ipcontent_id}'").partial_path}" %>
+      </div>
+      <div id="tab2" class="tab_content">       
+        <%= render :partial => "/site/signup", :locals=>{:facebook=>false} %>
+      </div>
+      <div id="tab3" class="tab_content">
+        <%= render :partial => "/site/share" %>
+      </div>
+    </div>
+  </div>
+
+    <div id="share-friend" style="display:none;" class="tab_content">
+          <%= render :partial => "/site/share_with_friend" %>      
+    </div>
+  </div>
+  <div class="clear"></div>
+  <div id="footer">
+    <div id="footer_line"></div>
+    <div class="center">
+      <a href="#">Careers</a>  <a href="#">Terms & Conditions</a>  <a href="#">Contact Us</a> <br/>
+      © 2011 Ultra. All Rights Reserved
+    </div>
+  </div>
+</div>
+

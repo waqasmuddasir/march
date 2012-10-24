@@ -1,0 +1,18 @@
+<div id="topbar" class="black">
+  <%if session[:auth_token] != nil%>
+                <div id="leftnav">
+                  <a href="/m/packages"><%= image_tag "mobile/home.png" %> </a>
+                </div>
+ <%end%>
+		<div id="title">
+			Ultra mobile
+                </div>
+  <%if session[:auth_token] != nil%>
+                <div class="rightnav">
+                  <a href="/m/logout" class="whitelink">Logout</a>
+                </div>
+  <%end%>
+
+  
+</div> <!-- topbar -->
+

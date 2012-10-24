@@ -1,0 +1,8 @@
+
+<%if @error.blank?%>
+<h2>We've sent you an SMS to <%=current_user.mobile%></h2>
+<%else%>
+  Sorry, We are facing some problems to send an SMS, please check your settings by clicking <%= link_to 'here', :controller=>:users, :action=>:edit, :id=>current_user.id %>
+  <h5>Error Description</h5>
+  <%= @error %>
+<%end%>

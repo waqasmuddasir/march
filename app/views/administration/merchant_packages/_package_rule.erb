@@ -1,0 +1,101 @@
+<script language="javascript" type="text/javascript" >
+        jQuery(document).ready( function() {
+              <%if @administration_merchant_package.package_rule.nil? %>
+                  $("#administration_merchant_package_package_rule_attributes_is_all_day").attr("checked","checked")
+             <%elsif @administration_merchant_package.package_rule.is_all_day%>
+                 $("#administration_merchant_package_package_rule_attributes_is_all_day").attr("checked","checked")
+             <%end%>
+              showTimes();
+              $( '#administration_merchant_package_package_rule_attributes_rule_type' ).attr("value","<%=@rule_type%>")
+              $( '.weekday' ).each(function(index) {                 
+                 
+                });
+                $( '#administration_merchant_package_package_rule_attributes_rule_type' ).change(function() {
+                  showDays($("#administration_merchant_package_package_rule_attributes_rule_type").attr("value"));
+                });
+                showDays($("#administration_merchant_package_package_rule_attributes_rule_type").attr("value"));
+
+        });
+      function showTimes()
+        {
+          
+          if($("#administration_merchant_package_package_rule_attributes_is_all_day").attr("checked"))
+            {
+              $("#all_day").css("display","none");
+            }
+          else
+            {
+              $("#all_day").css("display","block");
+            }
+        }
+      function showDays(type)
+        {
+          
+          if(type == "weekly")
+            {
+              $("#weekly").css("display","block");
+              $("#monthly").css("display","none");
+              $("#yearly").css("display","none");
+            }
+          else if(type == "monthly")
+            {
+              $("#weekly").css("display","none");
+              $("#monthly").css("display","block");
+              $("#yearly").css("display","none");
+              $("#month_day").text($("#administration_merchant_package_start_date_3i").attr("value"));
+            }
+         else if(type == "yearly")
+            {
+               $("#weekly").css("display","none");
+              $("#monthly").css("display","none");
+              $("#yearly").css("display","block");
+              var selectedDay = $("#administration_merchant_package_start_date_2i").attr("value");
+              var d = $("#administration_merchant_package_start_date_2i option[value='"+selectedDay+"']").text()+" "+$("#administration_merchant_package_start_date_3i").attr("value");
+              $("#year_day").text(d);
+            }
+          else
+            {
+              $("#weekly").css("display","none");
+              $("#monthly").css("display","none");
+              $("#yearly").css("display","none");
+            }
+        }
+        function removeTime(linkID)
+        {
+          var id = linkID.split("_");
+          $('#param_'+id[1]).remove();
+          //.html("<input type='text' id='removed_times[]' value='"+id[1]+"'/>");
+        }
+    </script>
+<div class="field">
+  <div class="field">
+    <%=  f.check_box :is_all_day,:onclick=>"showTimes();"%> All day
+    <div style="display:none" id="all_day">
+      From <%= f.time_select :start_time %> to <%= f.time_select :end_time %>
+      
+      <%=f.fields_for(:package_allowed_time,@package_allowed_time) do |cf|%>
+
+        <%=render "allowed_times",:f => cf%>
+      
+      <%end%>
+    </div>
+  </div>
+    <%= label_tag :package_rule %><br />
+    <%= f.select :rule_type, options_for_select(Administration::PackageRule::RULETYPE )%>
+    <div style="display:none" id="weekly">
+      
+      <%Administration::PackageRule::DAYS.each do |d|%>        
+        <%=  check_box_tag "days[]",d[1],
+            if (!@days.nil? && @days.include?(d[1]))
+            true
+          end, {:class =>"weekday"}%> <%=d[0]%>
+
+      <%end%>
+    </div>
+    <div style="display:none" id="monthly">
+      <span id="month_day"></span> of every month
+    </div>
+    <div style="display:none" id="yearly">
+      <span id="year_day"></span> of every year
+    </div>
+</div>

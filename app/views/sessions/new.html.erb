@@ -1,0 +1,29 @@
+<div class="box" style="margin-left:30%;margin-top:10%">
+  <div class="content">
+
+    
+    <div class="heading">
+      Login
+    </div>
+    <p class="error">
+        <%= flash[:notice] %>
+        <%= @error%>
+    </p>
+    <%= form_tag sessions_path do -%>
+      <p class="label"><%= label_tag 'Email' %><br />
+      <%= text_field_tag 'login', @login,:class=>"textbox" %></p>
+
+      <p class="label"><%= label_tag 'Password' %><br/>
+      <%= password_field_tag 'password', nil,:class=>"textbox" %></p>
+
+      <!-- Uncomment this if you want this functionality
+      <p><%= label_tag 'remember_me', 'Remember me' %>
+      <%= check_box_tag 'remember_me', '1', @remember_me %></p>
+      -->
+      <p>
+        <%= link_to "Forgot password",:controller => "users",:action=>"forgot_password" %>
+      </p>
+      <p class="button"><%= submit_tag 'Log in' %> <input type="button" value="Sign up" onclick="window.location.href='/signup'" /></p>
+    <% end -%>
+  </div>
+</div>

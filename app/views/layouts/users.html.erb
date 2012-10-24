@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ultra</title>
+    <%= stylesheet_link_tag "style.css" %>
+    <%= javascript_include_tag "jquery.js" %>
+    <%= javascript_include_tag "application.js" %>
+    <%= csrf_meta_tag %>
+    <script language="javascript" type="text/javascript">
+      $(function(){
+           <% if !flash[:notice].blank? %>
+                showMessagePanel("success_message");
+           <%elsif !flash[:error].blank?%>
+                showMessagePanel("failure_message");
+           <%end%>
+      });
+    </script>
+  </head>
+  <body>
+    <div id="message_panel" class="success_message">
+      <div class="center"><%if !flash[:notice].nil?%>
+                              <%= flash[:notice] %>
+                          <%elsif !flash[:error].nil?%>
+                              <%= flash[:error] %>
+                         <%end%></div>
+    </div>
+    <div class="clear"></div>
+    <div id="wrapper">
+      <div id="top">
+        <div id="site_name" onclick="goToHome();">
+          <%=image_tag "ultravie_logo_headr.png"%>
+          <% if !current_user.blank? %>
+            <div id="private_access"></div>
+          <%end%>
+        </div>
+        <div id="account">
+          <% if !current_user.blank? %>
+
+            <%=link_to "Group Chat", :controller => "user_group",:action => "index"%> <%= image_tag "bullet.png" %>
+            <%=link_to "My Account", :controller => "users",:action => "edit",:id=>current_user.id%> <%= image_tag "bullet.png" %>
+             <%=link_to "Sign Out", "/logout"%>
+            
+          <%else%>
+             <%=link_to "Sign In", :controller => "sessions",:action => "new"%> <%#= image_tag "bullet.png" %>
+             <%#=link_to "Sign Up", :controller => "users",:action => "new"%>
+          <%end%>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <div id="hrline"></div>
+
+      <div id="contents"><%= yield %></div>
+      <div id="footer">
+        <div id="hrline"></div>
+        <div id="left">© 2011 Ultra. All rights reserved</div>
+        <div id="right"><%=link_to "Contact Us" %>  | <%=link_to "Terms & Conditions" %> </div>
+      </div>
+    </div>
+
+
+
+  </body>
+</html>

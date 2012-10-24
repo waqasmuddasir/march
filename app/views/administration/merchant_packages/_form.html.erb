@@ -1,0 +1,87 @@
+<%= javascript_include_tag "jquery.js"%>
+<%= javascript_include_tag "ckeditor/ckeditor.js"  %>
+    <%= javascript_include_tag "ckeditor/adapters/jquery.js"  %>
+    <script language="javascript" type="text/javascript" >
+        jQuery(document).ready( function() {
+              $( 'textarea.editor' ).ckeditor();
+             selectCode('code_<%=@administration_merchant_package.verification_code%>','<%=@administration_merchant_package.verification_code%>');
+             <%if !@administration_merchant_package.offering_id.nil? %>
+               // $('#administration_merchant_package_offering_id' ).attr("value","<%=@administration_merchant_package.offering_id%>")
+              <%end%>
+        });
+        function selectCode(imgId,code)
+        {
+          
+          $('.selected_code').each( function(index){
+            $(this).removeClass("selected_code");
+            $(this).addClass("unselected_code");
+          });
+          $("#"+imgId).removeClass("unselected_code");
+          $("#"+imgId).addClass("selected_code");
+          $("#administration_merchant_package_verification_code").val(code);
+        }
+
+    </script>
+<%= form_for(@administration_merchant_package,:html => { :multipart => true }) do |f| %>
+  <% if @administration_merchant_package.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@administration_merchant_package.errors.count, "error") %> prohibited this merchant package from being saved:</h2>
+
+      <ul>
+      <% @administration_merchant_package.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%if !@administration_merchant_package.merchant_package_image.nil? %>
+      <%= image_tag  @administration_merchant_package.merchant_package_image.public_filename(:medium)%> <br/><br/>
+       <%= f.label "Change Image" %><br/>
+    <%else%>
+      <%= f.label "Attach Image" %><br/>
+    <%end%>
+      <%=file_field_tag :uploaded_data%>
+  </div>
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description, :col => 20, :row => 10,:class => "editor" %>
+  </div>
+  <div class="field">
+    <%= f.label :start_date %><br />
+    <%= f.date_select :start_date %>
+  </div>
+  <div class="field">
+    <%= f.label :end_date %><br />
+    <%= f.date_select :end_date %>
+  </div>
+ <%=f.fields_for(:package_rule,@package_rule) do |cf|%>
+    <%=render "package_rule",:f => cf%>
+  <%end%>
+<div id="merchant_codes">
+  <%Administration::MerchantPackage::CODES.each do |key,value|%>
+    <div class="unselected_code" id="code_<%=key%>" onclick="selectCode(this.id,'<%=key%>');">
+        <%= image_tag "merchant_codes/code_#{key}.png" %>
+    </div>  
+  <%end%>
+  <div class="clear"></div>
+</div>
+<%=f.hidden_field :verification_code%>
+  <div class="field">
+    <%= f.label :offering_id %><br />
+    <%= f.select :offering_id, options_for_select(Administration::Offering.all.map{|x| [x.title, x.id]}.insert(0, 'none'), @administration_merchant_package.offering_id.to_s)%>
+  </div>
+
+  <div class="field">
+    <%= f.label :redemption_instructions %><br />
+    <%= f.text_area :redemption_instructions, :col => 20, :row => 10,:class => "editor" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

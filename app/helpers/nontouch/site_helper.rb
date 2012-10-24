@@ -1,0 +1,2 @@
+module Nontouch::SiteHelper
+end

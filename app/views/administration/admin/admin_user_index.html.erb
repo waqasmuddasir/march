@@ -1,0 +1,86 @@
+
+
+<table style="width:100%">
+  <tr>
+    <td>
+
+      <%=flash[:error] %>
+
+      <%  if @admin.id==nil %>
+        <h3>add new admin user</h3>
+        <%= form_for(:admin, :url=>{:controller=>:admin, :action=>:create})  do |f| %>
+          <table>
+            <tr><td>
+                login:<br/>
+
+                <%= f.text_field :login %>
+
+              </td></tr>
+            <tr><td>
+                password:<br/>
+              <%= f.password_field :password %></td>
+
+            </tr>
+            <tr><td>
+                confirm password:<br/>
+              <%= f.password_field :password_confirmation %></td>
+
+            </tr>
+            <tr> <td><br/><%= f.submit %></td> </tr>
+          </table>
+        <% end %>
+
+      <% else %>
+        <h3>change password for admin user</h3>
+        
+        <%= form_for(:admin, :url=>{:controller=>:admin, :action=>:update, :id=>@admin.id})  do |f| %>
+          <table>
+            <tr>
+              <td>
+                <br/>
+             &nbsp;<b><%= @admin.login  %></b>
+              </td>
+
+              </td></tr>
+            <tr><td>
+                password:<br/>
+              <%= f.password_field :password %></td>
+
+            </tr>
+            <tr><td>
+                confirm password:<br/>
+              <%= f.password_field :password_confirmation %></td>
+
+            </tr>
+            <tr> <td><br/><%= f.submit 'Update' %> <%= link_to 'cancel', '/admin/admin_user' %></td> </tr>
+          </table>
+        <% end %>
+
+      <% end %>
+
+
+
+    </td>
+    <td>
+      <h3>Admin list</h3>
+
+      <table>
+        <% @admins.each do |ad| %>
+          <tr>
+            <td style="width:100px"><b><%= ad.login %></b></td>
+            <td>
+
+              <%= ad.login==session["admin_id"].to_s ? "del" : link_to('del', :controller=>"admin",:action=>"destroy", :id=>ad.id)  %>
+              &nbsp;|&nbsp;
+              <%= link_to('change', :controller=>"admin",:action=>"edit", :id=>ad.id) %>
+
+            </td>
+          </tr>
+        <% end %>
+      </table>
+
+      <br />
+    </td>
+  </tr>
+</table>
+

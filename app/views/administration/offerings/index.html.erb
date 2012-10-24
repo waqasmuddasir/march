@@ -1,0 +1,23 @@
+<h1>Manage offerings</h1>
+
+<table>
+  <tr>
+    <th>Title</th>    
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @administration_offerings.each do |administration_offering| %>
+  <tr>
+    <td><%= administration_offering.title %></td>
+    <td><%= link_to 'Show', administration_offering %></td>
+    <td><%= link_to 'Edit', edit_administration_offering_path(administration_offering) %></td>
+    <td><%= link_to 'Destroy', administration_offering, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Offering', new_administration_offering_path %>

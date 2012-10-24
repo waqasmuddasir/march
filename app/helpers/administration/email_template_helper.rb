@@ -1,0 +1,2 @@
+module Administration::EmailTemplateHelper
+end

@@ -1,0 +1,31 @@
+<%#=@x%>
+<p>Ultra - Signup</p>
+  <div class="error">
+    <%if !@errors.nil?%>
+      <%@errors.each do |error| %>
+        <%= error["message"]%> <br/>
+      <%end%>
+    <%end%>
+
+  </div>
+  <%= form_for(@user, :url => {:controller => "/mobile/users", :action=>"create"}) do |f|-%>
+    <div>
+      <p><%= label_tag 'Name'%><br />
+      <%= f.text_field 'name',:class=>"textbox"%></p>
+
+      <p><%= label_tag 'Email Address'%><br />
+      <%= f.text_field 'login',:class=>"textbox"%></p>
+
+      <p><%= label_tag 'Password' %><br/>
+      <%= f.password_field 'password',:class=>"textbox" %></p>
+    </div>
+   
+  <div class="button"><%= submit_tag 'Sign up'%> </div>
+    <p>
+       Already registered? <%=link_to "Login",:controller => :sessions,:action => :new%>
+    <p>
+     <%=hidden_field_tag "package_id",  @package_id%>
+
+  <% end -%>
+  
+

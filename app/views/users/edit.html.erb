@@ -1,0 +1,48 @@
+
+<%=form_for @user do |f| %>
+<div class="account_detail">
+  <div class="content">
+    <div class="heading">
+      My Account
+    </div>
+    <% if @user.errors.any? %>
+    <div class="error">
+      <%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <p class="label"><%= f.label :name %></p>
+    <p>
+      <%= f.text_field :name, :maxlength=>30,:class => :textbox %>
+    </p>
+    <p class="label"><%= f.label :email %></p>
+    <p>
+      <%= @user.email %>
+    </p>
+    <%if !@user.mobile.nil?%>
+      <%@user.mobile=@user.mobile.last(10)%>
+    <%end%>
+    <p class="label"><%= f.label :mobile %></p>
+    <p>
+      (44)&nbsp; <%= f.text_field :mobile, :maxlength=>13,:class => :textbox,:onkeydown => "validateNumberField(event);" %>
+    </p>
+    <p>
+       <%= f.check_box :sms_notification %>
+        SMS me about future packages.
+    </p>
+    <p class="button">
+      <%= f.submit "Update Details"%>
+    </p>
+  </div>
+</div>
+
+<%end%>
+
+<%#= link_to 'Show', @user %>
+<%#= link_to "password", :action=>:change_password %>
+
+

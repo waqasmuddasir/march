@@ -1,0 +1,69 @@
+
+<div id="package_details">
+  <%#= form_for(:pacakges, :url => {:controller => "/mobile/packages", :action=>"redeem",:id=>params[:id]}) do |f|-%>
+    <div id="error" class="error">
+
+    </div>
+    <div>
+      <%= @message %>
+    </div>
+    <%if @offering != nil && @package != nil%>
+
+      <span class="header"><%= @offering["title"]%></span>
+      <div class="clear"></div>
+      <div style="padding-left:10px;">
+        <% if !@package["package_image"].nil? %>
+            <%=image_tag @package["package_image"].to_s %>
+        <%end%>
+          </div>
+      <div style="padding-left:20px" >
+
+         <div><%=raw @package["description"]%> </div>
+      </div>
+      <div id="packages" style="padding-left:10px;display:none;">
+        <%= raw  @offering["description"].to_s.html_safe %>
+      </div>
+      <p>
+        <span href="JAVASCRIPT:" onclick="showHideDetails();" style="cursor:pointer;text-decoration:underline"><span id="link_name">Show Details...</span></span>
+      </p>
+
+      <%=hidden_field_tag :verification_code,@package["verification_code"]%>
+      <div>
+        <%if @message.blank?%>
+          <%if @merchants!=nil%>
+            <p class="header"> Are you at
+              <% sep = "" %>
+              <%@merchants.each do |merchant|%>
+               <%= sep%> <%= merchant["name"] %>
+               <% sep = " OR " %>
+              <%end%>
+              ?
+            <p>
+
+          <%end%>
+
+            <%  if (!@package["redeem_id"].nil? && @package["redeem_id"].to_s !=  "0") || @package["is_valid"].to_s == "false" || @package["is_valid"].to_s == ""%>
+            <%if @package["is_valid"].to_s == "false" || @package["is_valid"].to_s == ""%>
+              <h5>Currently Unavailable</h5>
+            <%else%>
+              <h5> Offer Already Redeemed</h5>
+            <%end%>
+
+              <p class="button"><input type="button" value="Redeem Now" disabled="true"/> </p>
+              <%if !@package["next_day"].nil? %>
+                <b>Next Available: <%=  @package["next_day"] %></b>
+              <%end%>
+            <%else%>
+                <p class="button"><input type="button" value="Redeem Now" onclick="validate_package('<%=params[:id]%>');" id="btnRedeem"/> </p>
+            <%end%>
+        <%end%>
+      </div>
+      <%  if (!@package["verification_code"].nil?)%>
+        <%=hidden_field_tag "varify",@package["verification_code"]%>
+      <%end%>
+    <%end%>
+
+
+  <%#end-%>
+
+</div>

@@ -1,0 +1,61 @@
+<script language="javascript">
+  function validate_area_select()
+  {
+    var area_select = document.getElementById("area_id");
+
+    if (area_select.value=="none"){
+      alert("Please Select an area. ");
+      area_select.focus();
+      return false;
+    }
+    return true;
+  }
+  
+</script>
+<br/>
+
+<%= form_tag({:action=>"search_by_area"}, :onsubmit=>"return validate_area_select();") do %>
+  <%= label_tag(:area_id, "Search by area:") %>
+  <%= select_tag :area_id,options_for_select(Area.all.collect { |c| [c.name, c.id] }.insert(0, 'none'),params[:area_id]) %>
+  <%= submit_tag("Search") %>
+<% end %>
+<br/>
+<%  if !@potential_users.nil? %>
+  <table>
+    <tr style="background-color: silver">
+      <th style="width:200px">name</th>
+      <th style="width:230px">email</th>
+      <th style="width:120px">area</th>
+      
+    </tr>
+
+    <% @potential_users.each do |u| %>
+      <tr>
+        <td><%=u.name%></td>
+        <td><%=u.email%></td>
+        <td><%= Area.find(u.area_id).name if !u.area_id.nil? %></td>
+      </tr>
+    <% end %>
+  </table>
+
+<%end%>
+
+<%if @page_count and @current_page %>
+  <% for p in 1..@page_count %>
+    <%if p==@current_page.to_i %>
+      <%=p%>
+    <%else%>
+      <%= link_to p.to_s, :action=>:index, :page_number=>p if @search_type.nil? || @search_type!="package" %>
+      <%= link_to p.to_s, :action=>"search_by_package", :package_id=>params[:package_id],:page_number=>p if !@search_type.nil? and @search_type=="package" %>
+
+    <%end%>
+    &nbsp;
+  <%end%>
+<%end%>
+<br/>
+
+
+
+
+
+

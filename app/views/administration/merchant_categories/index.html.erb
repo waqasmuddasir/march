@@ -1,0 +1,32 @@
+<h1>Manage Merchant Categories</h1>
+<div style="float:right;margin-right:50px;" >
+  <%= link_to 'New Merchant category', new_administration_merchant_category_path %> &nbsp;&nbsp; <%= link_to 'Merchants',administration_merchants_path %>
+</div>
+<%if @administration_merchant_categories.count > 0%>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @administration_merchant_categories.each do |administration_merchant_category| %>
+  <tr>
+    <td><%= administration_merchant_category.name %></td>
+    <td><%= administration_merchant_category.description %></td>
+    <td><%= link_to 'Show', administration_merchant_category %></td>
+    <td><%= link_to 'Edit', edit_administration_merchant_category_path(administration_merchant_category) %></td>
+    <td><%= link_to 'Destroy', administration_merchant_category, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+<%else%>
+  <div style="padding-top:50px;padding-left:50px">
+     No marchent category found
+  </div>
+<%end%>
+

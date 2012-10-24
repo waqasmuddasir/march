@@ -1,0 +1,58 @@
+
+<div class="box">
+  <div class="content">
+    <div class="heading">
+      Registered user details
+    </div>
+    <br/>
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @user.name %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @user.email %>
+</p>
+
+<p>
+  <b>Mobile:</b>
+  <%= @user.mobile %>
+</p>
+<br/>
+
+<%= link_to('back', :action=>"index") %> &nbsp;|&nbsp;
+<%= link_to('edit', :action=>"edit", :id=>@user.id) %> &nbsp;|&nbsp;
+<%= link_to('destroy',{:action=>"destroy",:id=>@user.id}, :confirm=>"Are you sure?", :method=>:delete) %> &nbsp;|&nbsp;
+<%= link_to('change password', :action=>"change_password", :id=>@user.id) %>
+
+
+
+  </div>
+</div>
+<br/>
+<br/>
+<%= render :partial=>"assign_package", :locals=>{:user_id=>@user.id} %>
+<br/>
+<%  if !@packages.nil? %>
+<h3>Subscribed Packages</h3>
+<% i=0 %>
+  <% @packages.each do |p| %>
+<p>
+  <%i=i+1%>
+<%=  i.to_s +  ') ' %>
+    <%=p.title%>
+&nbsp;
+<%= link_to :remove, :action=>"disassign_package",:package_id=>p.id, :user_id=>@user.id %>
+</p>
+<% end %>
+
+
+<%end%>
+
+
+
+<br/>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ultra</title>
+    <%= stylesheet_link_tag "style.css" %>
+    <%= javascript_include_tag "jquery.js" %>
+    <%= javascript_include_tag "application.js" %>
+    <%= csrf_meta_tag %>
+    <script language="javascript" type="text/javascript">
+      $(function(){
+           <% if !flash[:notice].blank? %>
+                showMessagePanel("success_message");
+           <%elsif !flash[:error].blank?%>
+                showMessagePanel("failure_message");
+           <%end%>
+      });
+    </script>
+  </head>
+  <body>
+    <div id="message_panel" class="success_message">
+      <div class="center"><%if !flash[:notice].nil?%>
+                              <%= flash[:notice] %>
+                          <%elsif !flash[:error].nil?%>
+                              <%= flash[:error] %>
+                         <%end%></div>
+    </div>
+    <div class="clear"></div>
+    <%=render :partial => "/site/login_panel"%>
+    <div id="wrapper">
+       <div id="contents"><%= yield %></div> 
+    </div>
+
+
+    
+  </body>
+</html>

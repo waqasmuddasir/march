@@ -1,0 +1,8 @@
+<div id="sms_popup">
+  <p>
+    What is your Mobile Number?
+  </p>
+  <%= form_for(current_user,:url => {:controller => :users,:action=>:send_link_on_mobile,:id=>@package_id}) do |f| %>
+    (+44) <%=f.text_field "mobile",:class => "textbox number_field",:onkeydown => "validateNumberField(event);"%> <span class="button"> <%=f.submit "Send"%></span>
+  <%end%>
+</div>

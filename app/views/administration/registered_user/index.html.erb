@@ -1,0 +1,95 @@
+<script language="javascript">
+  function validate_package_select()
+  {
+    var package_select = document.getElementById("package_id");
+
+    if (package_select.value=="none"){
+      alert("Please Select a Package. ");
+      package_select.focus();
+      return false;
+    }
+    return true;
+  }
+  function validate_name_text()
+  {
+    var name_text = document.getElementById("name");
+    if (name_text.value.length<1||!name_text.value.match(/[^\s]/)){
+      alert("Please enter user name.");
+      name_text.focus();
+      return false;
+    }
+
+    return true;
+  }
+  function validate_text(name_text)
+  {
+    if (name_text.value.length<1||!name_text.value.match(/[^\s]/)){
+      alert("Please enter user email.");
+      name_text.focus();
+      return false;
+    }
+    return true;
+  }
+</script>
+<br/>
+<%=params[:package_id]%>
+<%= form_tag({:action=>"search_by_name"}, :onsubmit=>"return validate_name_text();") do %>
+  <%= label_tag(:name, "Search by user name:") %>
+  <%= text_field_tag(:name) %>
+  <%= submit_tag("Search") %>
+<% end %>
+<br/>
+<%= form_tag({:action=>"search_by_email"}, :onsubmit=>"return validate_text(email);") do %>
+  <%= label_tag(:email, "Search by email:") %>
+  <%= text_field_tag(:email) %>
+  <%= submit_tag("Search") %>
+<% end %>
+<br/>
+<%= form_tag({:action=>"search_by_package"}, :onsubmit=>"return validate_package_select();") do %>
+  <%= label_tag(:package_id, "Search by assigned package:") %>
+  <%= select_tag :package_id,options_for_select(Administration::MerchantPackage.all.collect { |c| [c.title, c.id] }.insert(0, 'none'),params[:package_id]) %>
+  <%= submit_tag("Search") %>
+<% end %>
+<br/>
+<%  if !@users.nil? %>
+  <table>
+    <tr style="background-color: silver">
+      <th style="width:200px">name</th>
+      <th style="width:230px">email</th>
+      <th style="width:120px">mobile</th>
+      <th></th>
+      <th></th>
+    </tr>
+
+    <% @users.each do |u| %>
+      <tr>
+        <td><%=u.name%></td>
+        <td><%=u.email%></td>
+        <td><%=u.mobile%></td>
+        <td><%= link_to('show', :action=>"show", :id=>u.id) %></td>
+        <td><%= link_to('edit', :action=>"edit", :id=>u.id) %></td>
+      </tr>
+    <% end %>
+  </table>
+
+<%end%>
+
+<%if @page_count and @current_page %>
+  <% for p in 1..@page_count %>
+    <%if p==@current_page.to_i %>
+      <%=p%>
+    <%else%>
+      <%= link_to p.to_s, :action=>:index, :page_number=>p if @search_type.nil? || @search_type!="package" %>
+      <%= link_to p.to_s, :action=>"search_by_package", :package_id=>params[:package_id],:page_number=>p if !@search_type.nil? and @search_type=="package" %>
+
+    <%end%>
+    &nbsp;
+  <%end%>
+<%end%>
+<br/>
+
+
+
+
+
+

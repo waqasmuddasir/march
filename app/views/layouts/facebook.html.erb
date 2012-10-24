@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <title>Ultra</title>
+    <%= stylesheet_link_tag "style.css" %>
+    <%= stylesheet_link_tag "tabs.css" %>
+    <%#= javascript_include_tag :defaults %>
+    <%#= javascript_include_tag "jquery.js" %>
+    <%= csrf_meta_tag %>
+  </head>
+  <body>
+
+    <div id="fb_wrapper">
+      <div id="top">
+        <div id="site_name">
+        &nbsp;
+        </div>
+        <div class="clear"></div>
+      </div>
+      <div id="header-box" style="width:100%">
+        <div id="main_heading">Facebook application</div>
+
+      </div>
+      <div class="notice">
+        <%= flash[:notice] %>
+      </div>
+      <br/>
+      <div id="content-box"><%= yield %></div>
+    </div>
+
+
+
+  </body>
+</html>

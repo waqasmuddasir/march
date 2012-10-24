@@ -1,0 +1,19 @@
+     
+      <%= form_for(:admin, :url=>{:controller=>:admin, :action=>:create})  do |f| %>
+        <table>
+          <tr><td>
+              login:<br/>
+            <%= f.text_field :login %></td></tr>
+          <tr><td>
+              password:<br/>
+            <%= f.password_field :password %></td>
+
+          </tr>
+          <tr><td>
+              confirm password:<br/>
+            <%= f.password_field :password_confirmation %></td>
+
+          </tr>
+          <tr> <td><br/><%= f.submit %></td> </tr>
+        </table>
+      <% end %>

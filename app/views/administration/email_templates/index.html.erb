@@ -1,0 +1,25 @@
+<h3>Listing administration_email_templates</h3>
+
+<table width="500px">
+  <tr  style="background-color:orange"  >
+    <th align="left">Name</th>
+    
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @administration_email_templates.each do |administration_email_template| %>
+  <tr>
+    <td><%= administration_email_template.name %></td>
+    
+    
+    <td><%= link_to 'Show', administration_email_template %></td>
+    <td><%= link_to 'Edit', edit_administration_email_template_path(administration_email_template) %></td>
+   
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%#= link_to 'New Email template', new_administration_email_template_path %>

@@ -1,0 +1,90 @@
+<%= javascript_include_tag "jquery.js"%>
+<% if !flash[:notice].blank? || (!@message.nil? && !@message.blank?) %>
+  <div id="thank_message">
+   <div class="center"><%= flash[:notice] %></div>
+  </div>
+<%end%>
+<div class="left">
+ <%= form_for :user, :url => {:controller => "users", :action => "create",:package_id => params[:package_id] } do |f| -%>
+  <div class="box">
+    <div class="content">
+      <div class="heading">
+        Please confirm your details
+         <% @user.password = @user.password_confirmation = nil %>
+      </div>
+      <div class="sub_heading">
+        (Existing users: please sign in to get access to this offer)
+      </div>
+       <p class="error">
+         <% if @user.errors.any? %>
+
+          <% @user.errors.full_messages.each do |msg| %>
+            <%= msg %><br/>
+          <% end %>
+
+        <% end %>
+      </p>
+      <p class="label">
+        Your Name
+      </p>
+      <p>
+        <%= f.text_field :name, :maxlength=>30,:class=>:textbox %>
+      </p>
+      <p class="label">
+        Email Address
+      </p>
+      <p>
+        <%= f.text_field :login, :maxlength=>40,:class=>:textbox %>
+      </p>
+      <p class="label">
+        Choose a password
+      </p>
+      <p>
+         <%= f.password_field :password, :maxlength=>18,:class=>:textbox %>
+      </p>
+      <%#*<p class="label">%>
+        <%#*Confirm password%>
+      <%#*</p>%>
+      <%#*<p>%>
+         <%#= f.password_field :password_confirmation, :maxlength=>18,:class => :textbox  %>
+      <%#*</p>%>
+      <p>
+        <%= f.check_box :email_notification,:class => :checkbox %>
+                E-mail me about future packages.
+      </p>
+      <p class="button">
+         <%= submit_tag 'All Done' %>
+      </p>
+      <p>
+        <%if @package != nil%>
+            We’ll e-mail you instructions for redeeming this package.
+          <%end%>
+      </p>
+    </div>
+  </div>
+   <%if @package != nil%>
+            <%=hidden_field_tag "package_id",  @package.id%>
+          <%end%>
+  <%end%>
+  <div class="horizontalspacer"></div>
+  <div class="box">
+     <div class="content">
+      <div class="heading">
+        About Ultra
+      </div>
+       <p>
+         Ultra is a FREE service bringing you hand-picked packages from premium local services in Central London every week. We take your privacy very seriously and will never sell your details to third parties.
+       </p>
+       <p>
+         <%=link_to "Learn more" %>
+       </p>
+     </div>
+  </div>
+</div>
+<div class="left">
+  <%= render :partial => "users/package_details" %> 
+</div>
+<div class="clear"></div>
+
+
+

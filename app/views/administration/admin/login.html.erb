@@ -1,0 +1,14 @@
+
+ <%=form_for(:admin, :url=>{:controller=>:admin, :action=>:login}) do |f| %>
+<%=flash[:error]%>
+
+   <p><%= label_tag 'login' %><br/>
+  <%= f.text_field :login %></p>
+
+   <p><%= label_tag 'password' %><br/>
+  <%= f.password_field :password %></p>
+
+  <p><%= submit_tag 'Login' %></p>
+
+<%end%>
+

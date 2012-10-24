@@ -1,0 +1,13 @@
+<div class="field">
+  
+  <%if @contacts != nil && @contacts.count > 0%>
+    <%=  label_tag "Contacts" %><br />
+    <div style="width:300px;height:200px;overflow:auto">
+      <%@contacts.each do |contact|%>
+      <input type="checkbox" name="administration_merchant_contact[][contact_id]" id="administration_merchant_contact_contact_id" value="<%=contact.id%>" <%if @merchant_contacts.include?(Administration::MerchantContact.find(:first,:conditions =>{:contact_id=>contact.id,:merchant_id => @administration_merchant.id}))%>checked="checked" <%end%>/> <%=contact.first_name%>&nbsp<%=contact.last_name%> <em>(<%=contact.email%>)</em> <br/>
+
+      <%end%>
+    </div>
+
+    <%end%>
+  </div>

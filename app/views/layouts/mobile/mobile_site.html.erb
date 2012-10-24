@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <meta name="viewport" content="width=device-width,user-scalable=no" />
+    <title>Ultra Mobile</title>
+    <%= stylesheet_link_tag "mobile/mobile-style.css" %>    
+    <%= javascript_include_tag "jquery.js"%>
+    <%=javascript_include_tag  "app_ajax.js"  %>
+    <%= javascript_include_tag "mobile/main.js"  %>
+    <%= javascript_include_tag "mobile/functions"  %>
+
+    
+    <%= csrf_meta_tag %>
+  </head>
+  <body>
+
+    <div>
+      
+        
+         <%= render :partial => "layouts/mobile/mobile_header" %>
+         <%= render :partial => "layouts/mobile/noscript" %>
+      <br/>
+      <div id="content">
+        <div id="content-box"><%= yield %></div>
+      </div>
+    </div>
+
+
+
+  </body>
+</html>

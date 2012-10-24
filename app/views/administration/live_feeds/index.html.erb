@@ -1,0 +1,122 @@
+<%= javascript_include_tag "jquery.js"%>
+<%=javascript_include_tag  "app_ajax.js"  %>
+<script language="javascript">
+$(document).ready(function() {  
+  $("#start").val("0");
+  $("#total_feeds").val("5");
+  showLoading();
+  getLiveFeeds();
+  getLiveFeedCount();
+  setInterval("getLiveFeeds()",5000);
+  setInterval("getLiveFeedCount()",5000);
+  <%if EventLog.count(:id) > 5%>
+      showMoreFeeds();
+  <%else%>
+    hideShowMore();
+    <%end%>
+
+});
+ function getLiveFeedCount()
+  {
+     $.ajax({
+      type: "POST",
+      url: '/admin/livefeeds/count',
+      data: {},
+      dataType: 'html',
+      cache: false,
+      success:function(msg){
+         $("#live_feed_count").html(msg);
+         showResults();
+      }
+    });
+  }
+  function getLiveFeeds()
+  {
+     $.ajax({
+      type: "POST",
+      url: '/admin/livefeeds/view',
+      data: {},
+      dataType: 'html',
+      cache: false,
+      success:function(msg){
+         $("#live_feeds").html(msg);         
+         showResults();
+      }
+    });
+  }
+  function showLoading()
+  {
+    $("#live_feeds").css("display","none");
+    $("#loading").css("display","block");
+  }
+  function showMoreLoading()
+  {
+    $("#show_more_text").css("display","none");
+    $("#loading").css("display","block");
+  }
+  function showMoreFeeds()
+  {
+    $("#show_more_text").css("display","block");
+    $("#loading").css("display","none");
+  }
+  function showResults()
+  {
+     $("#live_feeds").css("display","block");
+    $("#loading").css("display","none");
+  }
+  function showMore()
+  {
+    showMoreLoading();
+    var total_feeds = parseInt($("#total_feeds").val());
+    var start =parseInt($("#start").val());
+    $("#start").val(total_feeds+start);    
+    getMoreFeeds();
+  }
+  function getMoreFeeds()
+  {
+    $.ajax({
+      type: "POST",
+      url: '/admin/livefeeds/more_feeds',
+      data: {start:$("#start").val()},
+      dataType: 'html',
+      cache: false,
+      success:function(msg){
+         $("#more_feeds").append(msg);
+         showMoreFeeds();
+         $("#start").val(0);
+         $("#total_feeds").val(parseInt($("#total_feeds").val())+5);
+      }
+    });
+    
+  }
+  function hideShowMore()
+  {
+    $("#show_more_text").css("display","none");
+  }
+
+</script>
+<h5>Live feeds</h5>
+<div style="float:left;padding:10px;">
+<div id="live_feeds">
+  <%=render :partial => "administration/live_feeds/view_feeds"%>
+</div>
+<div id="more_feeds">
+  <%=render :partial => "administration/live_feeds/more_feeds"%>
+  
+</div>
+<div id="show_more_text">
+  <a href="JAVASCRIPT:" onclick="showMore();" >Show more...</a>
+</div>
+
+<input type="hidden" id="start" value="0" />
+
+<div id="loading" style="display:none;">
+  <%= image_tag "ajax-loader.gif" %>
+</div>
+<%=hidden_field_tag "total_feeds", "5"%>
+<%=hidden_field_tag "total_shown", "5"%>
+</div>
+<div style="float:left;" id="live_feed_count">
+  <%=render :partial => "administration/live_feeds/live_feed_count"%>
+</div>
+<div class="clear"></div>

@@ -1,0 +1,33 @@
+<h1>Listing email_records</h1>
+
+<table>
+  <tr>
+    <th>Sender</th>
+    <th>Recipient</th>
+    <th>Subject</th>
+    <th>Body</th>
+    <th>Merchant package</th>
+    <th>Email type</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @email_records.each do |email_record| %>
+  <tr>
+    <td><%= email_record.sender %></td>
+    <td><%= email_record.recipient %></td>
+    <td><%= email_record.subject %></td>
+    <td><%= email_record.body %></td>
+    <td><%= email_record.merchant_package_id %></td>
+    <td><%= email_record.email_type %></td>
+    <td><%= link_to 'Show', email_record %></td>
+    <td><%= link_to 'Edit', edit_email_record_path(email_record) %></td>
+    <td><%= link_to 'Destroy', email_record, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Email record', new_email_record_path %>

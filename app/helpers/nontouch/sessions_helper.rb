@@ -1,0 +1,2 @@
+module Nontouch::SessionsHelper
+end

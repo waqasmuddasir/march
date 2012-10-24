@@ -1,0 +1,19 @@
+<div id="response" style="display:none;">  
+  <div id="message"><%=@message%></div>
+  <div id="error"><%=@error%></div>
+  <%if !@package.nil?%>
+    <%if  !@package["redeem_id"].nil? %>
+        <%=hidden_field_tag :redeem_id,@package["redeem_id"]%>
+      <%else%>
+        <%=hidden_field_tag :redeem_id%>
+    <%end%>
+    <%if  !@package["title"].nil? %>
+        <%=  hidden_field_tag :package_title,@package["title"]%>
+    <%end%>
+    <%if !session[:name].nil?%>
+        <%=  hidden_field_tag :user_name,session[:name].to_s%>
+    <%end%>
+  <%end%>
+</div>
+
+

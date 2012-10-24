@@ -1,0 +1,110 @@
+
+<%= javascript_include_tag "nontouch/main.js"  %>
+
+<script language="javascript" type="text/javascript">
+  var Now = new Date();      // Grab the current date.
+  var Start = Now.getTime();
+  var allowed_ms = 900300;
+  var allowed_min = 1;
+  var allowed_sec = 30;
+  var start_time = new Date();
+  var end_time = new Date();
+  function elapsedmilliseconds()// Calculates elapsed time
+  {
+    var n = new Date();           // Grab new copy of date
+    var s = n.getTime();          // Grab current millisecond #
+    var diff = s - Start;         // Calculate the difference.
+    return diff;                  // Return the difference.
+  }
+  function decider()
+  {
+    
+    var elapsed = elapsedmilliseconds();
+    //alert(elapsed);
+    if(elapsed <= allowed_ms)
+    {
+      //setTimeout("decider()",1000);
+      var dif = allowed_ms - elapsed;
+
+      var x = dif / 1000
+      var seconds = Math.floor(x % 60);
+      x /= 60;
+      var minutes = Math.floor(x % 60);
+        
+      if(minutes < 9)
+      {
+        minutes = "0"+minutes;
+      }
+      if(seconds < 10)
+      {
+        seconds = "0"+seconds
+      }
+          
+      //clearTimer();
+          
+      setupCounter(minutes,seconds);
+        
+    }
+    else
+    {
+      timeExpired();
+    }
+      
+  }
+  
+  setInterval("decider()", 1000);
+  function selectCode(imgId,code)
+  {
+    document.getElementById("verification_code").value = code;
+  }
+    
+      
+</script>
+
+  <%if @offering != nil && @package != nil%>
+    <span class="header"><%= @offering["title"]%></span>
+    <%if !@package["redeemed_at"].nil? %>
+            <div class="graymessage">Redeemed: <%=  @package["redeemed_at"] %></div>
+          <%end%>
+  <%end%>
+   <div class="center">
+            <div class="box">
+                <h5>Show Screen to Cashier Within Next</h5>
+                <div style="font-size:80px;font-weight:bold">
+                  <span id="minutes"></span> :
+                  <span id="seconds"></span>
+                </div>
+            </div>
+
+  <div class="clear"></div>
+  
+  <%= form_for(:packages, :url => {:controller => "packages",:action => "verify_code" }) do |f|%>
+
+    <div id="merchant_codes">
+      <h5>Merchant Verification (Tap to Select)</h5>
+      <%Mobile::PackagesController::CODES.each do |key,value|%>
+        <div class="unselected_code" id="code_<%=key%>" onclick="selectCode(this.id,'<%=key%>');">
+          <%= image_submit_tag "merchant_codes/#{value}.png" %>
+        </div>
+
+        <%if key.to_i == 4%>
+          <div class="clear"></div>
+        <%end%>
+      <%end%>
+      <div class="clear"></div>
+    </div>
+
+
+
+
+    <%=hidden_field_tag :verification_code%>
+
+    <%=hidden_field_tag :redeem_id,@redeem_id%>
+    <%=hidden_field_tag :id,params[:id]%>
+
+
+  <%end%>
+
+</div>
+
+

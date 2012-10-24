@@ -1,0 +1,35 @@
+<%= javascript_include_tag "jquery.js"%> 
+<%= javascript_include_tag "ckeditor/ckeditor.js"  %>
+    <%= javascript_include_tag "ckeditor/adapters/jquery.js"  %>
+    <script language="javascript" type="text/javascript" >
+        jQuery(document).ready( function() {
+              $( 'textarea.editor' ).ckeditor();
+
+        });
+    </script>
+<%= form_for(@administration_offering) do |f| %>
+  <% if @administration_offering.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@administration_offering.errors.count, "error") %> prohibited this administration_offering from being saved:</h2>
+
+      <ul>
+      <% @administration_offering.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description, :col => 20, :row => 10,:class => "editor" %>
+  </div>
+  <%= render :partial => "administration/offerings/merchants" %>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

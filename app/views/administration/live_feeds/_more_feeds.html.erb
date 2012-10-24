@@ -1,0 +1,24 @@
+<%if !@more_feeds.nil? && @more_feeds.count > 0 %>
+  <table cellpadding="5">
+
+    <%@more_feeds.each do |feed|%>
+      <tr>
+
+        <td align="left" valign="top"  width="150px"><%=feed.created_at.strftime('%d/%m/%y at %I:%M %P')%></td>
+        <td align="center" valign="top" width="50px"><%=feed.user_id%></td>
+
+        <% if !feed.merchant_package_id.nil? %>
+          <td align="left" valign="top" width="150px"><%=Administration::MerchantPackage.find_by_id(feed.merchant_package_id).title%></td>
+        <%else%>
+          <td align="left" valign="top" width="150px">None</td>
+        <%end%>
+          
+        <td align="left" valign="top" width="150px"><%=User.find_by_id(feed.user_id).name rescue nil%></td>
+        <td align="left" valign="top" width="150px"><%=feed.event_body%></td>
+      </tr>
+    <%end%>
+
+  </table>
+<%else%>
+
+<%end%>

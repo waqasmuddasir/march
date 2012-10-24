@@ -1,0 +1,30 @@
+ <% if !session[:admin_id].blank? %>
+        <% if (session[:admin_type].to_s=="super_admin")%>
+          <div style="float:right"><%='you are logged on as (Super Admin) '+session['admin_id'].to_s %></div>
+        <% else %>
+          <div style="float:right"><%='you are logged on as '+session['admin_id'].to_s %></div>
+        <% end %>
+
+          <ul id="nav">
+            <li><%= link_to 'Home', '/admin/index'%></li>
+              <% if (session[:admin_type].to_s=="super_admin")%>
+            <li><%= link_to 'Admin Users', '/admin/admin_user' %></li>
+            <% end %>
+            <li><%= link_to 'Merchants',  administration_merchants_path %></li>
+            <li><%= link_to 'Offerings',  administration_offerings_path %></li>
+            <li><%= link_to 'Packages',  administration_merchant_packages_path %></li>
+            <li><%= link_to 'Contacts', administration_contacts_path %></li>
+            <li><%= link_to 'Emails', "/admin/bulk_email" %></li>
+            <li><%= link_to 'New Emails', "/admin/bulk_email/new_email_address" %></li>
+            <li><%= link_to 'Templates', "/administration/email_templates" %></li>
+            <li><%= link_to 'Live feeds', "/admin/livefeeds" %></li>
+            <li><%= link_to 'Users', "/admin/registered_user" %></li>
+               <li><%= link_to 'Mail List', "/admin/mail_list" %></li>
+   <% if (session[:admin_type].blank?)%>
+            <li><%= link_to 'Change Password', "/admin/change_password"%></li>
+            <% end %>
+
+                        <li><%= link_to 'Logout', "/admin/logout" %></li>
+
+          </ul>
+<% end %>

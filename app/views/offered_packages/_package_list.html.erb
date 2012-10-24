@@ -1,0 +1,16 @@
+<% if @packages.count>0 %>
+<% @packages.each do |p| %>
+<div style="padding: 10px 10px 10px 10px; border: solid silver thin; margin: 5px ">
+  <b><%=p.title%>:</b><br/>
+  <%#= raw  p.description[1..100] +"..." %>
+  <%= raw  p.description%>
+  <span style=" margin-left: 10px">
+  <%=link_to "details", :controller=> "offered_packages", :action=>:show, :id=>p.id %>
+    </span>
+</div>
+
+  <br/>
+<%end%>
+<%else%>
+  <span style="font-size:12px;color:red"> No package listed..</span>
+<%end%>

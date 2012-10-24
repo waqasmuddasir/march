@@ -1,0 +1,20 @@
+<p>
+
+<%=form_for(:member, :url=>{:controller=>"user_group", :action=>"send_invitation"}) do |f|%>
+
+  <p class="label">
+          Friend's Name <%= f.text_field :name, :maxlength=>"15",:class=>"textbox"%>
+  </p>
+  <p class="label">
+          Friend's Mobile&nbsp;(+44)&nbsp;<%=f.text_field :mobile,:onkeydown => "validateNumberField(event);",:class=>"small_textbox"%>
+  </p>
+  <p>
+    <%= submit_tag :invite,:class=>"invite_button" %>  <%=link_to "Cancel", :action=>:index %>
+  </p>
+  <input id="member_package_id" name="member[package_id]" type="hidden" value="<%=@package.id%>"></input>
+  <input id="user_group_id" name="member[user_group_id]" type="hidden" value="<%=@invite_group_id%>"></input>
+<%end%>
+</p>
+
+
+

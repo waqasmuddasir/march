@@ -1,0 +1,31 @@
+ <%= javascript_include_tag "nontouch/main.js"  %>
+ <%if @offering != nil && @package != nil%>
+    <span class="header"><%= @offering["title"]%></span>
+    <%if !@package["redeemed_at"].nil? %>
+      <div class="graymessage">Redeemed: <%=  @package["redeemed_at"] %></div>
+    <%end%>
+    <div style="float:right;margin-right:20px;">
+      <iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Ffoodsecret&amp;layout=button_count&amp;show_faces=true&amp;width=100&amp;action=like&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px;" allowTransparency="true"></iframe>
+    </div>
+      <div class="clear"></div>
+  <%end%>     
+<div class="center box">
+  <h3><%= raw @status%></h3>
+  <p><%= raw  @error %></p>
+  <p>
+   <%= raw @merchant_message%>
+  </p>
+  <%=@s%>
+</div>
+<%if @offering != nil && @package != nil%>
+<div style="padding-left:20px" >
+
+     <div><%=raw @package["description"]%> </div>
+  </div>
+  <div id="packages" style="padding-left:10px;display:none;">
+    <%= raw  @offering["description"].to_s.html_safe %>
+  </div>
+  <p>
+    <span href="JAVASCRIPT:" onclick="showHideDetails();" style="cursor:pointer;text-decoration:underline"><span id="link_name">Show Details...</span></span>
+  </p>
+<%end%>

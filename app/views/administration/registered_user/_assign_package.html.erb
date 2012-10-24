@@ -1,0 +1,36 @@
+<script language="javascript">
+  function validate_package_select()
+  {
+    var package_select = document.getElementById("package_id");
+    
+    if (package_select.value=="none"){
+      alert("Please Select a Package. ");
+      package_select.focus();
+      return false;
+    }
+    return true;
+  }
+</script>
+
+<div class="box">
+  <div class="content">
+    <h3>
+      Subscribe new package
+    </h3>
+    <%= flash[:assign_package_notice] %>
+    <%= form_tag({:action=>:assign_package, :user_id=>user_id}, :onsubmit=>"return validate_package_select();" ) do %>
+      <p>
+        Package: <%= select_tag :package_id,options_for_select(Administration::MerchantPackage.all.collect { |c| [c.title, c.id] }.insert(0, 'none')) %><br/><br/>
+        Notify user on package subscription    <br/>
+        <%= check_box_tag :email_notification,:class => :checkbox %>email &nbsp;&nbsp;
+        <%= check_box_tag :sms_notification,:class => :checkbox %>SMS
+
+        &nbsp;&nbsp;&nbsp;
+
+      </p>
+
+      <%= submit_tag "Subscribe" %> &nbsp;&nbsp;&nbsp;
+
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Sender:</b>
+  <%= @email_record.sender %>
+</p>
+
+<p>
+  <b>Recipient:</b>
+  <%= @email_record.recipient %>
+</p>
+
+<p>
+  <b>Subject:</b>
+  <%= @email_record.subject %>
+</p>
+
+<p>
+  <b>Body:</b>
+  <%= @email_record.body %>
+</p>
+
+<p>
+  <b>Merchant package:</b>
+  <%= @email_record.merchant_package_id %>
+</p>
+
+<p>
+  <b>Email type:</b>
+  <%= @email_record.email_type %>
+</p>
+
+
+<%= link_to 'Edit', edit_email_record_path(@email_record) %> |
+<%= link_to 'Back', email_records_path %>

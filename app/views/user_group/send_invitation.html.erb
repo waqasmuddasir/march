@@ -1,0 +1,23 @@
+
+
+<%= flash[:notice] %>
+
+<h1>
+  User Group Invitation
+</h1>
+
+
+    
+    <p>
+      <%=form_tag(:controller=>"user_group", :action=>"send_invitation") do %>
+    <table>
+      <tr><td>Name: <br/><%= text_field_tag :name %></td><td>Mobile<br/><%= text_field_tag :mobile %></td></tr>
+      <tr><td></td><td><%= submit_tag :invite %></td></tr>
+    </table>
+      <%end%>
+    </p>
+
+
+
+
+
